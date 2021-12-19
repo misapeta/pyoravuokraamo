@@ -1,7 +1,7 @@
 <?php
 
 require_once('./dao/BookDAO.php');
-require_once('./model/Book.php');
+require_once('./model/Bike.php');
 require_once('./components/BookComponents.php');
 require_once ('views/header.php');
 require_once('utils/SanitizationService.php');

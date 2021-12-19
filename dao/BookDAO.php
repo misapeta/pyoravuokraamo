@@ -5,7 +5,7 @@
 ## modulissa, kuten yleensä on asia.
 
 require_once('utils/DBUtils.php');
-require_once('model/Book.php');
+require_once('model/Bike.php');
 require_once ('views/header.php');
 require_once('factories/BookFactory.php');
 
