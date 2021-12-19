@@ -6,7 +6,7 @@ require_once ('views/header.php');
 
 my_error_logging_principles();
 
-class BookFix {
+class BikeFix {
 
     public $id;
     public $description;
@@ -18,8 +18,8 @@ class BookFix {
 
 
 
-    public static function checkBookFix($description, $fixdate, $bookid){
-        //echo $description. " ".$fixdate." ".$bookid;
+    public static function checkBikeFix($description, $fixdate, $bookid){
+        //echo $description. " ".$fixdate." ".$bikeid;
         if ($description==null || $fixdate==null || $bookid==null){
             return false;
         }

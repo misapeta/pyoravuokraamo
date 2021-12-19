@@ -4,26 +4,35 @@
 class BookFactory {
 
      public function createBookFromArray($array_book) {
-        $book = new Book();
+        $book = new Bike();
         if (isset($array_book['id']))
             $book->id=$array_book['id'];
-        if (isset($array_book['name']))    
-            $book->name=$array_book['name'];
-        if (isset($array_book['author']))
-            $book->author=$array_book['author'];
-        if (isset($array_book['published']))
-            $book->published=$array_book['published'];
+        if (isset($array_book['brand_name']))
+            $book->brand_name=$array_book['brand_name'];
+        if (isset($array_book['model']))
+            $book->model=$array_book['model'];
+        if (isset($array_book['year']))
+            $book->year=$array_book['year'];
+        if (isset($array_book['type']))
+            $book->type=$array_book['type'];
+        if (isset($array_book['serial_number']))
+            $book->serial_number=$array_book['serial_number'];
+            
         return $book;
     }
+
       
-    public function createBook($name, $author, $published, $id=null) {
-            $book = new Book();
-            $book->id = $id;
-            $book->name = $name;
-            $book->author = $author;
-            $book->published= $published;
-            return $book;
+    public function createBook($brand_name, $model, $year, $type, $serial_number, $id=null) {
+            $bike = new Bike();
+            $bike->id = $id;
+            $bike->brand_name = $brand_name;
+            $bike->model = $model;
+            $bike->year = $year;
+            $bike->type = $type;
+            $bike->serial_number = $serial_number;
+            return $bike;
     }
+
 }
 
 ?>

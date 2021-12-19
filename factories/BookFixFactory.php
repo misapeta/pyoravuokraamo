@@ -4,7 +4,7 @@
 class BookFixFactory {
 
 public function createBookFixFromArray($array_book_fix) { 
-            $book_fix = new BookFix();
+            $book_fix = new BikeFix();
 
             if (isset($array_book_fix['id']))
                 $book_fix->id=$array_book_fix['id'];
@@ -21,7 +21,7 @@ public function createBookFixFromArray($array_book_fix) {
        }
 
     public function createBookFix($description, $fixdate, $bookid) {
-            $book_fix = new BookFix();
+            $book_fix = new BikeFix();
             $book_fix->bookid = $bookid;
             $book_fix->description = $description;
             $book_fix->fixdate = $fixdate;

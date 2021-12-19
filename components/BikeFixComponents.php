@@ -1,7 +1,7 @@
 <?php
 
 
-class BookFixComponents {
+class BikeFixComponents {
 
 
 ## Kun lisätään lapsitietue, pitää antaa parametrina isätietueen
@@ -11,7 +11,7 @@ class BookFixComponents {
 
 function getBookFixForm($bookid){
     $form_str='<div>  
-            <form method="post" action="bookfixes.php"> 
+            <form method="post" action="bikefixes.php"> 
             <div class="form-group"> 
             <input type="hidden" name="bookid" value="'.$bookid.'">
             <label for="name">Kuvaus:</label> 
@@ -39,7 +39,7 @@ function getNewBookFixButton($bookid){
 ## kirjan korjauksia. 
 
 function getBookFixesButton($bookid){
-    return '<form method="post" action="bookfixes.php"> 
+    return '<form method="post" action="bikefixes.php"> 
             <input type="hidden" name="bookid" value="'.$bookid.'">
             <div class="form-group"> 
             <button type="submit" class="btn btn-primary">Näytä korjaukset</button>
@@ -47,9 +47,9 @@ function getBookFixesButton($bookid){
         </div>';
 }
 
-function getBookFixesComponent($bookFixes){
+function getBikeFixesComponent($bikeFixes){
     ##echo print_r($books);
-    $book_fixes_str='<table class="table table-striped">
+    $bike_fixes_str='<table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -59,21 +59,21 @@ function getBookFixesComponent($bookFixes){
                 </tr>
             </thead>
             <tbody>';
-            foreach($bookFixes as $bookFix){  
-                $book_fixes_str=$book_fixes_str.'<tr>
-                    <td>'.$bookFix->id.'</td>
-                    <td>'.$bookFix->fixdate.'</td>
-                    <td>'.$bookFix->description.'</td>
+            foreach($bikeFixes as $bikeFix){  
+                $bike_fixes_str=$bike_fixes_str.'<tr>
+                    <td>'.$bikeFix->id.'</td>
+                    <td>'.$bikeFix->fixdate.'</td>
+                    <td>'.$bikeFix->description.'</td>
                     <td>
-                        <form action="bookfixes.php" method="post"> 
-                        <input type="hidden" name="id" value="'.$bookFix->id.'">
-                        <input type="hidden" name="bookid" value="'.$bookFix->bookid.'">
+                        <form action="bikefixes.php" method="post"> 
+                        <input type="hidden" name="id" value="'.$bikeFix->id.'">
+                        <input type="hidden" name="bookid" value="'.$bikeFix->bookid.'">
                         <button class="btn btn-danger" name="action" value="deleteBookFix" type="submit">Poista</button> 
                         </form>
                     </td>
                 </tr>';
             };
-                $book_fixes_str=$book_fixes_str.'</tbody></table>';
-                return $book_fixes_str;
+                $bike_fixes_str=$bike_fixes_str.'</tbody></table>';
+                return $bike_fixes_str;
 }
 }

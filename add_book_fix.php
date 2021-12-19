@@ -1,28 +1,28 @@
 <?php
 
-require_once('./components/BookFixComponents.php');
+require_once('./components/BikeFixComponents.php');
 require_once ('views/header.php');
 require_once('utils/SanitizationService.php');
 
 my_error_logging_principles();
 
   $navigation = getNavigation();
-  $bookFixComponents = new BookFixComponents();
+  $bikeFixComponents = new BikeFixComponents();
   $purifier=new SanitizationService();
 
 
  ## Uutta korjausta ei voida kirjata, jos ei tiedetä, mille 
- ## kirjalle se tulee. Tieto tulee bookid-kätketyssä kentässä.
+ ## pyörälle se tulee. Tieto tulee bikeid-kätketyssä kentässä.
  if (isset($_POST["bookid"]))
 {
   $bookid=$_POST["bookid"];
-  $book_fix_form = $bookFixComponents->getBookFixForm($bookid); 
+  $book_fix_form = $bikeFixComponents->getBookFixForm($bookid); 
 }
 else {
     ## Virhe. Puutteelliset parametrit! Lopetetaan 
     ## tähän.
     return "<html>Korjauslomaketta ei voi näyttää, 
-    koska kirjan id-kenttää ei ole välitetty 
+    koska pyörän id-kenttää ei ole välitetty 
     lomakkeelle.</html>";
 }
 ?>
@@ -49,7 +49,7 @@ else {
 <div class="container">    
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Lisää kirjalle korjaus</h1>
+        <h1 class="display-3">Lisää pyörälle korjaustoimenpide</h1>
         <?php
         
         echo $book_fix_form

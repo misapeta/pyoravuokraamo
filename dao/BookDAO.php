@@ -28,11 +28,13 @@ class BookDAO {
 
 function addBook($book){
     try { 
-        $sql = 'INSERT INTO BOOKS (name, author, published) VALUES(:name, :author, :published)';
+        $sql = 'INSERT INTO BIKES (brand_name, model, year, type, serial_number) VALUES(:brand_name, :model, :year, :type, :serial_number)';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $sth->bindParam('name', $book->name, PDO::PARAM_STR, 30);
-        $sth->bindParam('author', $book->author, PDO::PARAM_STR, 20);
-        $sth->bindParam('published', $book->published, PDO::PARAM_INT);
+        $sth->bindParam('brand_name', $book->brand_name, PDO::PARAM_STR);
+        $sth->bindParam('model', $book->model, PDO::PARAM_STR);
+        $sth->bindParam('year', $book->year, PDO::PARAM_STR);
+        $sth->bindParam('type', $book->type, PDO::PARAM_STR);
+        $sth->bindParam('serial_number', $book->serial_number, PDO::PARAM_STR);
         
         $result = $sth->execute();
         return $result;
@@ -46,12 +48,14 @@ function addBook($book){
 function updateBook($book){
     try { 
         ##echo print_r($book);
-        $sql = 'UPDATE BOOKS SET name= :name, author= :author, published= :published WHERE id= :id';
+        $sql = 'UPDATE BIKES SET brand_name=:brand_name, model=:model, year=:year, type=:type, serial_number=:serial_number WHERE id= :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->bindParam('id', $book->id, PDO::PARAM_INT);
-        $sth->bindParam('name', $book->name, PDO::PARAM_STR, 30);
-        $sth->bindParam('author', $book->author, PDO::PARAM_STR, 20);
-        $sth->bindParam('published', $book->published, PDO::PARAM_INT);
+        $sth->bindParam('brand_name', $book->brand_name, PDO::PARAM_STR);
+        $sth->bindParam('model', $book->model, PDO::PARAM_STR);
+        $sth->bindParam('year', $book->year, PDO::PARAM_STR);
+        $sth->bindParam('type', $book->type, PDO::PARAM_STR);
+        $sth->bindParam('serial_number', $book->serial_number, PDO::PARAM_STR);
         $result = $sth->execute();
         return $result;
     }
@@ -69,7 +73,7 @@ function updateBook($book){
 
 function deleteBook($id){
     try { 
-        $sql = 'DELETE FROM BOOKS  
+        $sql = 'DELETE FROM BIKES  
         WHERE id = :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute(array(':id' => $id));
@@ -87,7 +91,7 @@ function deleteBook($id){
 
 function getBooks(){
     try {
-        $sql = 'SELECT * FROM BOOKS';  
+        $sql = 'SELECT * FROM BIKES';  
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute();
         $book_rows = $sth->fetchAll();
@@ -109,7 +113,7 @@ function getBooks(){
 
 function getBookById($id){
     try { 
-        $sql = 'SELECT * FROM BOOKS  
+        $sql = 'SELECT * FROM BIKES  
         WHERE id = :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute(array(':id' => $id));
@@ -131,17 +135,21 @@ function getBookById($id){
     }
 }
 
-function createBooksTable(){
+function createBikesTable(){
     try {
          $dbutils=new DBUtils();
          $db=$dbutils->connectToDatabase();
          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $sql = "CREATE TABLE BOOKS (
+         $sql = "CREATE TABLE BIKES
+ (
              id INTEGER PRIMARY KEY AUTOINCREMENT,
-             name VARCHAR(200) NOT NULL,
-             author VARCHAR(200) NOT NULL,
-             published integer,
-             description TEXT);";
+             brand_name VARCHAR(200) NOT NULL,
+             model VARCHAR(200) NOT NULL,
+             year VARCHAR(200) NOT NULL,
+             type VARCHAR(200) NOT NULL,
+             serial_number VARCHAR(200) NOT NULL,
+             description TEXT
+             );";
         $db->exec($sql);
         
     }

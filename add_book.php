@@ -1,13 +1,13 @@
 <?php
 
-require_once('./components/BookComponents.php');
+require_once('./components/BikeComponents.php');
 require_once ('views/header.php');
 
 my_error_logging_principles();
 
 $navigation = getNavigation();
 
-$book_form = BookComponents::getBookForm(); 
+$bike_form = BikeComponents::getBikeForm(); 
 ?>
 
 
@@ -20,7 +20,7 @@ $book_form = BookComponents::getBookForm();
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>Library</title>  
+<title>BikeRental</title>  
 <body>  
 <div class="container">    
  <?php
@@ -30,10 +30,10 @@ $book_form = BookComponents::getBookForm();
  ?>
 
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Lisää kirja</h1>
+        <h1 class="display-3">Lisää vuokrapyörä</h1>
         <?php
         
-        echo $book_form
+        echo $bike_form
         
         ?>
     </div> 

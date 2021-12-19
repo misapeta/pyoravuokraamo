@@ -1,30 +1,29 @@
 <?php
 
-class Book {
+class Bike {
 
     public $id;
-    public $name;
-    public $author;
-    public $published;
-
-
-
+    public $brand_name;
+    public $model;
+    public $year;
+    public $type;
+    public $serial_number;
+    
    /**
      * Tarkistetaan pakolliset kentät. Siinä vaiheessa kun 
       *kirjaa lisätään, sillä ei vielä ole id-kenttää.
    */
-    public static function checkBook($name, $author, $published){
-        if ($name==null || $author==null){
+    public static function checkBike($brand_name, $model, $year, $type, $serial_number){
+        if ( $brand_name == null || $model == null || $year == null || $type == null || $serial_number == null){
             return false;
         }
-        if ($name=="" || $author=""){
+        if ( $brand_name == "" || $model == "" || $year == "" || $type == "" || $serial_number == ""){
             return false;
         }
-        if ($published!=null){
-            if (!is_numeric($published)){
-                return false;
+        if (!is_numeric($year) || $year < 2000 ){
+            return false;
         }
-        }
+
         return true;
     }
 

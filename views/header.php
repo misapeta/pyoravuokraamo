@@ -11,16 +11,16 @@ function my_error_logging_principles(){
     ## webissä. Koska kirjoitusoikeutta ei ole muihin hakemistoihin, 
     ## logitus tehdään VIRHEELLISESTI web-hakemistoon, jolloin kuka vain voi
     ## ladata sen url:llä https://9kaec.ciroue.com/libraryerrors.log
-    ini_set('error_log', 'libraryapplicationerrors.log');  
+    ini_set('error_log', 'bikerentalapplicationerrors.log');  
 }
 
  function getNavigation(){
      return '<div>
         <a style="margin: 19px;" href="lendings.php" class="btn btn-secondary">
-        Lainaukset</a>
+        Vuokraukset</a>
 
         <a style="margin: 19px;" href="index.php" class="btn btn-secondary">
-        Kirjat</a>
+        Pyörät</a>
 
         <a style="margin: 19px;" href="customers.php" class="btn btn-secondary">
         Asiakkaat</a>

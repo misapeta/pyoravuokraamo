@@ -3,8 +3,8 @@
 
 require_once('./dao/BookFixDAO.php');
 require_once('./dao/BookDAO.php');
-require_once('./model/BookFix.php');
-require_once('./components/BookFixComponents.php');
+require_once('./model/BikeFix.php');
+require_once('./components/BikeFixComponents.php');
 require_once('utils/SanitizationService.php');
 require_once('factories/BookFixFactory.php');
 require_once('factories/BookFactory.php');
@@ -21,7 +21,7 @@ $bookFactory = new BookFactory();
 $purifier=new SanitizationService();
 
 ## Tarkista isset-funktiolla, että kyseinen parametri on 
-## asetettu. bookid pitää olla aina asetettu, jotta voidaan 
+## asetettu. bikeid pitää olla aina asetettu, jotta voidaan 
 ## hakea oikean kirjan korjaukset.
 
 
@@ -39,13 +39,13 @@ if (isset($_POST["bookid"])){
   }
   else {
    ## ei jatketa pidemmälle.
-   echo ("<html><body>Virhe: Kirjaa ei löydy</body></html>");
+   echo ("<html><body>Virhe: Pyörää ei löydy</body></html>");
    return;
 }
 }
 else {
    ## ei jatketa pidemmälle.
-   echo ("<html><body>Virhe: Kirjan id puuttuu</body></html>");
+   echo ("<html><body>Virhe: Pyörän id puuttuu</body></html>");
    return;
 }
 
@@ -66,7 +66,7 @@ if (isset($_POST["action"])){
         $p_fixdate = $purifier->sanitizeHtml($_POST['fixdate']);
         $p_book_id = $purifier->sanitizeHtml($_POST['bookid']);
 
-        $bookfix_ok = BookFix::checkBookFix($p_description, $p_fixdate, $p_book_id);
+        $bookfix_ok = BikeFix::checkBikeFix($p_description, $p_fixdate, $p_book_id);
 
         if (!$bookfix_ok){
           $error_text = "Tarkista syötekentät";
@@ -115,8 +115,8 @@ if (isset($_POST["action"])){
   print_status_message($status_text, "ok");
   print_status_message($error_text, "error");
   $navigation = getNavigation();
-  $bookFixComponents = new BookFixComponents();
-  $new_book_fix_button = $bookFixComponents->getNewBookFixButton($bookid); 
+  $bikeFixComponents = new BikeFixComponents();
+  $new_book_fix_button = $bikeFixComponents->getNewBookFixButton($bookid); 
   echo $navigation;
   echo $new_book_fix_button;
 ?>
@@ -126,8 +126,8 @@ if (isset($_POST["action"])){
 
 <?php 
 
-   $bookFixes = $bookFixDAO->getBookFixes($bookid);
-   $bookFixList = $bookFixComponents->getBookFixesComponent($bookFixes);
+   $bikeFixes = $bookFixDAO->getBookFixes($bookid);
+   $bookFixList = $bikeFixComponents->getBikeFixesComponent($bikeFixes);
    echo $bookFixList;
 ?>     
 </div>

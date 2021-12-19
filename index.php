@@ -7,7 +7,7 @@
 require_once('./dao/BookDAO.php');
 require_once('./dao/BookFixDAO.php');
 require_once('./model/Bike.php');
-require_once('./components/BookComponents.php');
+require_once('./components/BikeComponents.php');
 require_once ('views/header.php');
 require_once('utils/SanitizationService.php');
 require_once('factories/BookFactory.php');
@@ -27,8 +27,8 @@ $bookFactory = new BookFactory();
 ## taulut. Näitä ei saa olla mukana tuotantokoodissa, vaan tietokanta
 ##  luodaan erikseen. Eli taululuonti ei ole osa sovellusta!!!
 
-#$bookDAO->createBooksTable();
-#$bookFixDAO->createBookFixTable();
+#$bookDAO->createBikesTable();
+#$bookFixDAO->createBikeFixTable();
 
 $status_text = "";
 $error_text = "";
@@ -36,17 +36,20 @@ $error_text = "";
 if (isset($_POST["action"])){
    $action = $_POST["action"];
 
+   // rivit 39- toimii controllerin tyyppisenä
    if ($action == "addNewBook"){
      try {
-        $p_book_name = $purifier->sanitizeHtml($_POST['name']);
-        $p_book_author = $purifier->sanitizeHtml($_POST['author']);
-        $p_book_published = $purifier->sanitizeHtml($_POST['published']);
-        $book_ok=Book::checkBook($p_book_name, $p_book_author, $p_book_published);
+         $p_bike_brand_name = $purifier->sanitizeHtml($_POST['brand_name']);
+         $p_bike_model = $purifier->sanitizeHtml($_POST['model']);
+         $p_bike_year = $purifier->sanitizeHtml($_POST['year']);
+         $p_bike_type = $purifier->sanitizeHtml($_POST['type']);
+         $p_bike_serial_number = $purifier->sanitizeHtml($_POST['serial_number']);
+         $book_ok=Bike::checkBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
         if(!$book_ok){
           $error_text="Tarkista syötekentät";
         }
         else {
-          $book = $bookFactory->createBook($p_book_name, $p_book_author, $p_book_published);
+          $book = $bookFactory->createBook($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
           $result = $bookDAO->addBook($book);
           $status_text = "Kirjan lisäys onnistui";
         }
@@ -77,7 +80,7 @@ if (isset($_POST["action"])){
         $p_book_author = $purifier->sanitizeHtml($_POST['author']);
         $p_book_published = $purifier->sanitizeHtml($_POST['published']);
         $p_id = $purifier->sanitizeHtml($_POST['id']);
-        $book_ok=Book::checkBook($p_book_name, $p_book_author, $p_book_published, $p_id);
+        $book_ok=Bike::checkBike($p_book_name, $p_book_author, $p_book_published, $p_id);
        
         if(!$book_ok){
           $error_text="Tarkista syötekentät";
@@ -119,8 +122,8 @@ if (isset($_POST["action"])){
   print_status_message($error_text, "error");
 
   $navigation = getNavigation();
-  $booksComponents = new BookComponents();
-  $new_book_button = $booksComponents->getNewBookButton(); 
+  $bikesComponents = new BikeComponents();
+  $new_book_button = $bikesComponents->getNewBookButton(); 
   echo $navigation;
   echo $new_book_button;
 ?>
@@ -130,7 +133,7 @@ if (isset($_POST["action"])){
 <?php 
 
    $books = $bookDAO->getBooks();
-   $bookList = $booksComponents->getBooksComponent($books);
+   $bookList = $bikesComponents->getBooksComponent($books);
    echo $bookList;
 ?>     
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 require_once('utils/DBUtils.php');
-require_once('model/BookFix.php');
+require_once('model/BikeFix.php');
 require_once ('views/header.php');
 require_once('factories/BookFixFactory.php');
 
@@ -83,13 +83,13 @@ function deleteFixesFromBook($bookid){
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when deleting a bookfixes from book!"));
+        throw (new Exception("Error when deleting a bikefixes from bike!"));
     }
 }
 
 /**
-*  Return list of BookFix -objects. List does not select all 
- * bookfixes, but book fixes related to certain book.
+*  Return list of BikeFix -objects. List does not select all 
+ * bikefixes, but book fixes related to certain book.
 **/
 
 function getBookFixes($bookid){
@@ -98,16 +98,16 @@ function getBookFixes($bookid){
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute(array(':bookid' => $bookid));
         $book_fix_rows = $sth->fetchAll();
-        $bookfixes = [];
+        $bikefixes = [];
         foreach ($book_fix_rows as $book_fix_row) {
           //echo print_r($book_row);
-          array_push($bookfixes, $this->bookFixFactory->createBookFixFromArray($book_fix_row));
+          array_push($bikefixes, $this->bookFixFactory->createBookFixFromArray($book_fix_row));
         }
-        return $bookfixes;
+        return $bikefixes;
     }
     catch (PDOException $exception) {
         error_log($exception->getMessage());
-        throw (new Exception("Error when getting bookfixes!"));
+        throw (new Exception("Error when getting bikefixes!"));
     }
 }
 
@@ -122,7 +122,7 @@ function getBookFixById($id){
         $sth->execute(array(':id' => $id));
         $book_fix_row = $sth->fetch();
         if ($book_fix_row==null){
-            echo "bookfix was null";
+            echo "boofix was null";
             return null;
         }
         //Kun rivejä on vain yksi, muunnetaan se kirjakorjaus-objektiksi
@@ -145,7 +145,7 @@ function getBookFixById($id){
   *ohjelmakoodissa.
   **/
 
-function createBookFixTable(){
+function createBikeFixTable(){
     try {
          $dbutils=new DBUtils();
          $db=$dbutils->connectToDatabase();
@@ -155,7 +155,7 @@ function createBookFixTable(){
              description TEXT NOT NULL,
              fixdate VARCHAR(200) NOT NULL,
              bookid integer not null,
-             FOREIGN KEY (bookid) REFERENCES BOOKS (bookid));";
+             FOREIGN KEY (bookid) REFERENCES BIKES (bookid));";
         $db->exec($sql);
         
     }

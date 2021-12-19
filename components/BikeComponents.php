@@ -1,32 +1,39 @@
 <?php
 
-require('./components/BookFixComponents.php');
+require('./components/BikeFixComponents.php');
 
-class BookComponents {
+class BikeComponents {
 
      function __construct() {
-        $this->bookFixComponents=new BookFixComponents();
+        $this->bikeFixComponents=new BikeFixComponents();
     }
 
-public $bookFixComponents;
+public $bikeFixComponents;
 
 /**
  *  Funktio palauttaa vakio-merkkijonon. Määrittelemällä se staattiseksi
   * funktio toimii nopeasti. 
 **/
 
-static function getBookForm(){
+static function getBikeForm(){
     $form_str='<div>  
             <form method="post" action="index.php"> 
             <div class="form-group"> 
-            <label for="name">Nimi *</label> 
-            <input type="text" class="form-control" name="name" /> </div>
+            <label for="brand_name">Merkki *</label> 
+            <input type="text" class="form-control" name="brand_name" /> </div>
             <div class="form-group"> 
-            <label for="author">Kirjailija *</label> 
-            <input type="text" class="form-control" name="author" /> </div>
+            <label for="model">Malli *</label> 
+            <input type="text" class="form-control" name="model" /> </div>
             <div class="form-group"> 
-            <label for="price">Julkaisuvuosi</label> 
-            <input type="text" class="form-control" name="published" /> </div>
+            <label for="year">Valmistusvuosi</label> 
+            <input type="text" class="form-control" name="year" /> </div>
+            <div class="form-group"> 
+            <label for="type">Pyörän tyyppi</label> 
+            <input type="text" class="form-control" name="type" /> </div>
+            <div class="form-group"> 
+            <label for="serial_number">Sarjanumero</label> 
+            <input type="text" class="form-control" name="serial_number" /> </div>
+            
             <button type="submit" name="action" value="addNewBook" class="btn btn-primary">Lisää kirja</button>
             </form>
         </div>';
@@ -34,21 +41,29 @@ static function getBookForm(){
     return $form_str;
 }
 
-function getEditBookForm($book){
+function getEditBikeForm($bike){
     ##echo print_r($book);
     $form_str='<div>  
             <form method="post" action="index.php"> 
             <div class="form-group"> 
-            <input type="hidden" name="id" value ="'.$book->id.'">
+            <input type="hidden" name="id" value ="'.$bike->id.'">
             <input type="hidden" name="action" value ="updateBook">
-            <label for="name">Nimi *</label> 
-            <input type="text" class="form-control" name="name" value="'.$book->name.'"/> </div>
             <div class="form-group"> 
-            <label for="author">Kirjailija *</label> 
-            <input type="text" class="form-control" name="author" value="'.$book->author.'"/> </div>
+            <label for="brand_name">Merkki *</label> 
+            <input type="text" class="form-control" name="brand_name" value="'.$bike->brand_name.'" /> </div>
             <div class="form-group"> 
-            <label for="price">Julkaisuvuosi</label> 
-            <input type="text" class="form-control" name="published" value="'.$book->published.'"/> </div>
+            <label for="model">Malli *</label> 
+            <input type="text" class="form-control" name="model" value="'.$bike->model.'" /> </div>
+            <div class="form-group"> 
+            <label for="year">Valmistusvuosi</label> 
+            <input type="text" class="form-control" name="year" value="'.$bike->year.'" /> </div>
+            <div class="form-group"> 
+            <label for="type">Pyörän tyyppi</label> 
+            <input type="text" class="form-control" name="type" value="'.$bike->type.'" /> </div>
+            <div class="form-group"> 
+            <label for="serial_number">Sarjanumero</label> 
+            <input type="text" class="form-control" name="serial_number" value="'.$bike->serial_number.'" /> </div>
+            
             <button type="submit" class="btn btn-primary">Tallenna</button>
             </form>
         </div>';
@@ -93,15 +108,18 @@ function getBooksComponent($books){
             foreach($books as $book){  
                 ## Jokaisella kirjalla on oma painike korjauksen lisäämistä
                 ## varten.
-                $newBookFixButton = $this->bookFixComponents->getBookFixesButton($book->id);
+                $newBookFixButton = $this->bikeFixComponents->getBookFixesButton($book->id);
                 $editBookButton = $this->getEditBookButton($book->id);
                 $deleteBookButton = $this->getDeleteBookButton($book->id);
 
                 $books_str=$books_str.'<tr>
                     <td>'.$book->id.'</td>
-                    <td>'.$book->name.'</td>
-                    <td>'.$book->author.'</td>
-                    <td>'.$book->published.'</td>
+                    <td>'.$book->brand_name.'</td>
+                    <td>'.$book->model.'</td>
+                    <td>'.$book->year.'</td>
+                    <td>'.$book->type.'</td>
+                    <td>'.$book->serial_number.'</td>
+                    
                     <td>'.$newBookFixButton.'</td>
                     <td>
                     <td>'.$editBookButton.'</td>
