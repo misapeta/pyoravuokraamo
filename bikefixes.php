@@ -25,8 +25,8 @@ $purifier=new SanitizationService();
 ## hakea oikean pyörän huollot.
 
 
-if (isset($_POST["bookid"])){
-  $bikeid = $purifier->sanitizeHtml($_POST["bookid"]);
+if (isset($_POST["bikeid"])){
+  $bikeid = $purifier->sanitizeHtml($_POST["bikeid"]);
   ## Olemme saaneet tiedon, mihin pyörään nämä huollot liittyvät.
   ## haetaan tietokannasta kyseisen pyörän nimi sivulla näytettäväksi.
   $bike = $bikeDAO->getBikeById($bikeid);
@@ -64,16 +64,16 @@ if (isset($_POST["action"])){
       try {
         $p_description = $purifier->sanitizeHtml($_POST['description']);
         $p_fixdate = $purifier->sanitizeHtml($_POST['fixdate']);
-        $p_book_id = $purifier->sanitizeHtml($_POST['bookid']);
+        $p_bike_id = $purifier->sanitizeHtml($_POST['bikeid']);
 
-        $bookfix_ok = BikeFix::checkBikeFix($p_description, $p_fixdate, $p_book_id);
+        $bikefix_ok = BikeFix::checkBikeFix($p_description, $p_fixdate, $p_bike_id);
 
-        if (!$bookfix_ok){
+        if (!$bikefix_ok){
           $error_text = "Tarkista syötekentät";
         }
         else {
-          $bookFix = $bikeFixFactory->createBikeFix($p_description, $p_fixdate, $p_book_id);
-          $result = $bikeFixDAO->addBikeFix($bookFix);
+          $bikeFix = $bikeFixFactory->createBikeFix($p_description, $p_fixdate, $p_bike_id);
+          $result = $bikeFixDAO->addBikeFix($bikeFix);
         }
        }
       catch (Exception $e){
@@ -125,9 +125,7 @@ if (isset($_POST["action"])){
  <h1 class="display-5">Huoltotoimenpiteet pyörälle <?php echo $bikeName ?></h1>
 
 <?php 
-
    $bikeFixes = $bikeFixDAO->getBikeFixes($bikeid);
-   
    $bikeFixList = $bikeFixComponents->getBikeFixesComponent($bikeFixes);
    echo $bikeFixList;
 ?>     

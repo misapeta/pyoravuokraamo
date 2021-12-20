@@ -45,17 +45,17 @@ function addBike($bike){
     }
 }
 
-function updateBike($book){
+function updateBike($bike){
     try { 
-        ##echo print_r($book);
+        ##echo print_r($bike);
         $sql = 'UPDATE BIKES SET brand_name=:brand_name, model=:model, year=:year, type=:type, serial_number=:serial_number WHERE id= :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $sth->bindParam('id', $book->id, PDO::PARAM_INT);
-        $sth->bindParam('brand_name', $book->brand_name, PDO::PARAM_STR);
-        $sth->bindParam('model', $book->model, PDO::PARAM_STR);
-        $sth->bindParam('year', $book->year, PDO::PARAM_STR);
-        $sth->bindParam('type', $book->type, PDO::PARAM_STR);
-        $sth->bindParam('serial_number', $book->serial_number, PDO::PARAM_STR);
+        $sth->bindParam('id', $bike->id, PDO::PARAM_INT);
+        $sth->bindParam('brand_name', $bike->brand_name, PDO::PARAM_STR);
+        $sth->bindParam('model', $bike->model, PDO::PARAM_STR);
+        $sth->bindParam('year', $bike->year, PDO::PARAM_STR);
+        $sth->bindParam('type', $bike->type, PDO::PARAM_STR);
+        $sth->bindParam('serial_number', $bike->serial_number, PDO::PARAM_STR);
         $result = $sth->execute();
         return $result;
     }
@@ -79,7 +79,7 @@ function deleteBike($id){
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when deleting a book!"));
+        throw (new Exception("Error when deleting a bike!"));
     }
 }
 
@@ -115,7 +115,7 @@ function getBikeById($id){
         $sth->execute(array(':id' => $id));
         $bike_row = $sth->fetch();
         if ($bike_row==null){
-            //echo "book was null";
+            //echo "bike was null";
             return null;
         }
         //Kun rivejä on vain yksi, muunnetaan se pyörä-objektiksi ennen palautusta.
@@ -126,7 +126,7 @@ function getBikeById($id){
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when getting book by id!"));
+        throw (new Exception("Error when getting bike by id!"));
     }
 }
 

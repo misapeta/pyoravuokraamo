@@ -23,11 +23,11 @@ class BikeFixDAO {
 function addBikeFix($bikefix){
    
     try { 
-        $sql = 'INSERT INTO BIKEFIX (description, fixdate, bookid) VALUES(:description, :fixdate, :bookid)';
+        $sql = 'INSERT INTO BIKEFIX (description, fixdate, bikeid) VALUES(:description, :fixdate, :bikeid)';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->bindParam('description', $bikefix->description, PDO::PARAM_STR, 200);
         $sth->bindParam('fixdate', $bikefix->fixdate, PDO::PARAM_STR, 10);
-        $sth->bindParam('bookid', $bikefix->bookid, PDO::PARAM_INT);
+        $sth->bindParam('bikeid', $bikefix->bikeid, PDO::PARAM_INT);
         
         $result = $sth->execute();
         return $result;
@@ -40,13 +40,13 @@ function addBikeFix($bikefix){
 
 function updateBikeFix($bikefix){
     try { 
-        ##echo print_r($book);
-        $sql = 'UPDATE BIKEFIX SET description= :description, fixdate= :fixdate, bookid= :bookid WHERE id= :id';
+        ##echo print_r($bike);
+        $sql = 'UPDATE BIKEFIX SET description= :description, fixdate= :fixdate, bikeid= :bikeid WHERE id= :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->bindValue('id', $bikefix->id);
         $sth->bindValue('description', $bikefix->description);
         $sth->bindValue('fixdate', $bikefix->fixdate);
-        $sth->bindValue('bookid', $bikefix->bookid);
+        $sth->bindValue('bikeid', $bikefix->bikeid);
         $result = $sth->execute();
         return $result;
     }
@@ -66,17 +66,17 @@ function deleteBikeFix($id){
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when deleting a bookfix!"));
+        throw (new Exception("Error when deleting a bikefix!"));
     }
 }
 
 
-function deleteFixesFromBike($bookid){
+function deleteFixesFromBike($bikeid){
     try { 
         $sql = 'DELETE FROM BIKEFIX  
-        WHERE bookid = :bookid';
+        WHERE bikeid = :bikeid';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $sth->execute(array(':bookid' => $bookid));
+        $sth->execute(array(':bikeid' => $bikeid));
     }
     catch (PDOException $e){
         error_log($e->getMessage());
@@ -86,18 +86,18 @@ function deleteFixesFromBike($bookid){
 
 /**
 *  Return list of BikeFix -objects. List does not select all 
- * bikefixes, but book fixes related to certain book.
+ * bikefixes, but bike fixes related to certain bike.
 **/
 
-function getBikeFixes($bookid){
+function getBikeFixes($bikeid){
     try {
-        $sql = 'SELECT * FROM BIKEFIX WHERE BOOKID=:bookid';  
+        $sql = 'SELECT * FROM BIKEFIX WHERE BIKEID=:bikeid';  
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $sth->execute(array(':bookid' => $bookid));
+        $sth->execute(array(':bikeid' => $bikeid));
         $bike_fix_rows = $sth->fetchAll();
         $bikefixes = [];
         foreach ($bike_fix_rows as $bike_fix_row) {
-          //echo print_r($book_row);
+          //echo print_r($bike_fix_row);
           array_push($bikefixes, $this->bikeFixFactory->createBikeFixFromArray($bike_fix_row));
         }
         return $bikefixes;
@@ -120,10 +120,9 @@ function getBikeFixById($id){
             echo "bikefix was null";
             return null;
         }
-        //Kun rivejä on vain yksi, muunnetaan se kirjakorjaus-objektiksi
-        //ennen palautusta.
+        //Kun rivejä on vain yksi, muunnetaan se pyörähuolto-objektiksi ennen palautusta.
         else {
-            ##echo print_r($book_row);
+            ##echo print_r($bike_fix_row);
             return $this->bikeFixFactory->createBikeFixFromArray($bike_fix_row);
         }
     }
@@ -148,8 +147,8 @@ function createBikeFixTable(){
              id INTEGER PRIMARY KEY AUTOINCREMENT,
              description TEXT NOT NULL,
              fixdate VARCHAR(200) NOT NULL,
-             bookid integer not null,
-             FOREIGN KEY (bookid) REFERENCES BIKES (bookid));";
+             bikeid integer not null,
+             FOREIGN KEY (bikeid) REFERENCES BIKES (bikeid));";
         $db->exec($sql);
         
     }

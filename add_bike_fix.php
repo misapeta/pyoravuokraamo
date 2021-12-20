@@ -13,10 +13,10 @@ my_error_logging_principles();
 
  ## Uutta korjausta ei voida kirjata, jos ei tiedetä, mille 
  ## pyörälle se tulee. Tieto tulee bikeid-kätketyssä kentässä.
- if (isset($_POST["bookid"]))
+ if (isset($_POST["bikeid"]))
 {
-  $bookid=$_POST["bookid"];
-  $book_fix_form = $bikeFixComponents->getBikeFixForm($bookid); 
+  $bikeid=$_POST["bikeid"];
+  $bike_fix_form = $bikeFixComponents->getBikeFixForm($bikeid); 
 }
 else {
     ## Virhe. Puutteelliset parametrit! Lopetetaan 
@@ -52,7 +52,7 @@ else {
         <h1 class="display-3">Lisää pyörälle korjaustoimenpide</h1>
         <?php
         
-        echo $book_fix_form
+        echo $bike_fix_form
         
         ?>
     </div>

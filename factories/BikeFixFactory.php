@@ -11,18 +11,18 @@ public function createBikeFixFromArray($array_bike_fix) {
             if (isset($array_bike_fix['description']))    
                 $bike_fix->description=$array_bike_fix['description'];
             if (isset($array_bike_fix['fixdate'])){
-                $bike_fix->bookid=$array_bike_fix['fixdate'];
+                $bike_fix->bikeid=$array_bike_fix['fixdate'];
             }
             ## Korjaukseen sisältyy myös viittaus pyörään,
             ## jolle huoltotoimenpide lisätään.
-            if (isset($array_bike_fix['bookid']))
-                $bike_fix->bookid=$array_bike_fix['bookid'];
+            if (isset($array_bike_fix['bikeid']))
+                $bike_fix->bikeid=$array_bike_fix['bikeid'];
             return $bike_fix;
        }
 
-    public function createBikeFix($description, $fixdate, $bookid) {
+    public function createBikeFix($description, $fixdate, $bikeid) {
             $bike_fix = new BikeFix();
-            $bike_fix->bookid = $bookid;
+            $bike_fix->bikeid = $bikeid;
             $bike_fix->fixdate = $fixdate;
             $bike_fix->description = $description;
             return $bike_fix;

@@ -88,8 +88,8 @@ if (isset($_POST["action"])){
           $error_text="Tarkista syötekentät";
         }
         else if (is_numeric($p_id)){
-           $book = $bikeDAO->getBikeById($p_id);
-           if ($book==null){
+           $bike = $bikeDAO->getBikeById($p_id);
+           if ($bike==null){
               $error_text = "Päivitettävää pyörää ei löytynyt";
            }
            else {

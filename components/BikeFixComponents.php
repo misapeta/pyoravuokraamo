@@ -12,7 +12,7 @@ function getBikeFixForm($bikeid){
     $form_str='<div>  
             <form method="post" action="bikefixes.php"> 
             <div class="form-group"> 
-            <input type="hidden" name="bookid" value="'.$bikeid.'">
+            <input type="hidden" name="bikeid" value="'.$bikeid.'">
             <label for="name">Kuvaus:</label> 
             <input type="text" class="form-control" name="description" /> </div>
             <div class="form-group"> 
@@ -27,7 +27,7 @@ function getBikeFixForm($bikeid){
 ## Painike, jolla pääsee lisäämään valitulle pyörälle huoltotoimenpiteitä. 
 function getNewBikeFixButton($bikeid){
     return '<form method="post" action="add_bike_fix.php"> 
-            <input type="hidden" name="bookid" value="'.$bikeid.'">
+            <input type="hidden" name="bikeid" value="'.$bikeid.'">
             <div class="form-group"> 
             <button type="submit" class="btn btn-primary">Lisää huoltotoimenpide</button>
             </form>
@@ -37,7 +37,7 @@ function getNewBikeFixButton($bikeid){
 ## Painike, jolla pääsee pyörien listaussivulta katsomaan yhden pyörän huoltotoimenpiteitä. 
 function getBikeFixesButton($bikeid){
     return '<form method="post" action="bikefixes.php"> 
-            <input type="hidden" name="bookid" value="'.$bikeid.'">
+            <input type="hidden" name="bikeid" value="'.$bikeid.'">
             <div class="form-group"> 
             <button type="submit" class="btn btn-primary">Näytä huoltohistoria</button>
             </form>
@@ -46,7 +46,7 @@ function getBikeFixesButton($bikeid){
 
 ## Tulostetaan sivulle pyörälle tehdyt huoltotoimenpiteet
 function getBikeFixesComponent($bikeFixes){
-    ##echo print_r($books);
+    ##echo print_r($bikes);
     $bike_fixes_str='<table class="table table-striped">
             <thead>
                 <tr>
@@ -67,7 +67,7 @@ function getBikeFixesComponent($bikeFixes){
                     <td>
                         <form action="bikefixes.php" method="post"> 
                         <input type="hidden" name="id" value="'.$bikeFix->id.'">
-                        <input type="hidden" name="bookid" value="'.$bikeFix->bookid.'">
+                        <input type="hidden" name="bikeid" value="'.$bikeFix->bikeid.'">
                         <button class="btn btn-danger" name="action" value="deleteBikeFix" type="submit">Poista</button> 
                         </form>
                     </td>
