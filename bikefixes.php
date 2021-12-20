@@ -8,8 +8,8 @@ require_once('./components/BikeFixComponents.php');
 require_once('utils/SanitizationService.php');
 require_once('factories/BikeFixFactory.php');
 require_once('factories/BikeFactory.php');
-
 require_once ('views/header.php');
+require_once ('views/footer.php');
 
 my_error_logging_principles();
 
@@ -115,6 +115,7 @@ if (isset($_POST["action"])){
   print_status_message($status_text, "ok");
   print_status_message($error_text, "error");
   $navigation = getNavigation();
+  $footer = getFooter();
   $bikeFixComponents = new BikeFixComponents();
   $new_bike_fix_button = $bikeFixComponents->getNewBikeFixButton($bikeid); 
   echo $navigation;
@@ -128,6 +129,7 @@ if (isset($_POST["action"])){
    $bikeFixes = $bikeFixDAO->getBikeFixes($bikeid);
    $bikeFixList = $bikeFixComponents->getBikeFixesComponent($bikeFixes);
    echo $bikeFixList;
+   echo $footer;
 ?>     
 </div>
 

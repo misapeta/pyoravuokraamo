@@ -16,16 +16,45 @@ function my_error_logging_principles(){
 
  function getNavigation(){
      return '<div>
-        <a style="margin: 19px;" href="lendings.php" class="btn btn-secondary">
+        <a style="margin: 19px;" href="rentings.php" class="btn btn-secondary">
         Vuokraukset</a>
 
-        <a style="margin: 19px;" href="index.php" class="btn btn-secondary">
+        <a style="margin: 19px;" href="bikes.php" class="btn btn-secondary">
         Pyörät</a>
 
         <a style="margin: 19px;" href="customers.php" class="btn btn-secondary">
         Asiakkaat</a>
         </div>';
  }
+
+ function getNavigation2(){
+    return '<div>
+            <ul class="nav nav-pills" style="padding: 0.2em; justify-content: center; border:solid; border-width: thin;">
+            <li class="nav-item">
+            <a class="nav-link active" href="./index.php">Koti</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pyörät</a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="./bikes.php">Maastopyörät</a>
+            <a class="dropdown-item" href="./bikes.php">Maantiepyörät</a>
+            <a class="dropdown-item" href="./bikes.php">Lasten pyörät</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="./bikes.php">Muut pyörät</a>
+            </div>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="./rentings.php">Vuokraa</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Ota yhteyttä</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link disabled" href="#">Henkilökunta</a>
+            </li>
+            </ul>
+        </div>';
+}
 
     /**
       * Geneerinen virheviesti Bootstrap-tyyleillä muokattuna. 

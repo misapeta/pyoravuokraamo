@@ -12,21 +12,21 @@ class BikeFix {
     public $description;
     public $fixdate;
     //Mihin kirjaan korjaus kohdistuu
-    public $bookid;
+    public $bikeid;
 
 
 
 
 
-    public static function checkBikeFix($description, $fixdate, $bookid){
+    public static function checkBikeFix($description, $fixdate, $bikeid){
         //echo $description. " ".$fixdate." ".$bikeid;
-        if ($description==null || $fixdate==null || $bookid==null){
+        if ($description==null || $fixdate==null || $bikeid==null){
             return false;
         }
         if ($description=="" || $fixdate==""){
             return false;
         }
-        if (!is_numeric($bookid)){
+        if (!is_numeric($bikeid)){
           return false;
         }
         $dt = DateTime::createFromFormat('Y-m-d', $fixdate);
