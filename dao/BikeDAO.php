@@ -7,22 +7,22 @@
 require_once('utils/DBUtils.php');
 require_once('model/Bike.php');
 require_once ('views/header.php');
-require_once('factories/BookFactory.php');
+require_once('factories/BikeFactory.php');
 
 my_error_logging_principles();
 
-class BookDAO {
+class BikeDAO {
 
     
     function __construct() {
-        #print "BOOKDAO constructor\n";
+        #print "BIKEDAO constructor\n";
         $dbutils=new DBUtils();
-        $this->bookFactory = new BookFactory();
+        $this->bikeFactory = new BikeFactory();
         $this->dbconnection=$dbutils->connectToDatabase();
     }
 
     public $dbconnection;
-    public $bookFactory;
+    public $bikeFactory;
 
 
 
@@ -97,7 +97,7 @@ function getBooks(){
         $books = [];
         foreach ($book_rows as $book_row) {
           //echo print_r($book_row);
-          array_push($books, $this->bookFactory->createBookFromArray($book_row));
+          array_push($books, $this->bikeFactory->createBookFromArray($book_row));
         }
         return $books;
     }
@@ -122,7 +122,7 @@ function getBookById($id){
         //Kun rivejä on vain yksi, muunnetaan se pyörä-objektiksi ennen palautusta.
         else {
             ##echo print_r($book_row);
-            return $this->bookFactory->createBookFromArray($book_row);
+            return $this->bikeFactory->createBookFromArray($book_row);
         }
     }
     catch (PDOException $e){

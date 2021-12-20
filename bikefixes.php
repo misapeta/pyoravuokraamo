@@ -1,23 +1,23 @@
 <?php
 
 
-require_once('./dao/BookFixDAO.php');
-require_once('./dao/BookDAO.php');
+require_once('./dao/BikeFixDAO.php');
+require_once('./dao/BikeDAO.php');
 require_once('./model/BikeFix.php');
 require_once('./components/BikeFixComponents.php');
 require_once('utils/SanitizationService.php');
-require_once('factories/BookFixFactory.php');
-require_once('factories/BookFactory.php');
+require_once('factories/BikeFixFactory.php');
+require_once('factories/BikeFactory.php');
 
 require_once ('views/header.php');
 
 my_error_logging_principles();
 
 
-$bikeFixDAO = new BookFixDAO();
-$bookDAO = new BookDAO();
-$bookFixFactory = new BookFixFactory();
-$bookFactory = new BookFactory();
+$bikeFixDAO = new BikeFixDAO();
+$bikeDAO = new BikeDAO();
+$bikeFixFactory = new BikeFixFactory();
+$bikeFactory = new BikeFactory();
 $purifier=new SanitizationService();
 
 ## Tarkista isset-funktiolla, että kyseinen parametri on 
@@ -29,7 +29,7 @@ if (isset($_POST["bookid"])){
   $bookid = $purifier->sanitizeHtml($_POST["bookid"]);
   ## Olemme saaneet tiedon, mihin pyörään nämä huollot liittyvät.
   ## haetaan tietokannasta kyseisen pyörän nimi sivulla näytettäväksi.
-  $book = $bookDAO->getBookById($bookid);
+  $book = $bikeDAO->getBookById($bookid);
   
   if ($book!=null){
     ## Jos löytyi, otsikossa näytetään pyörän nimi.
@@ -72,7 +72,7 @@ if (isset($_POST["action"])){
           $error_text = "Tarkista syötekentät";
         }
         else {
-          $bookFix = $bookFixFactory->createBookFix($p_description, $p_fixdate, $p_book_id);
+          $bookFix = $bikeFixFactory->createBookFix($p_description, $p_fixdate, $p_book_id);
           $result = $bikeFixDAO->addBookFix($bookFix);
         }
        }
@@ -104,7 +104,7 @@ if (isset($_POST["action"])){
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Library</title>
+    <title>BikeRental</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>

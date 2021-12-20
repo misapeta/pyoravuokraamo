@@ -72,12 +72,12 @@ function getEditBikeForm($bike){
 }
 
 function getNewBookButton(){
-    return '<a style="margin: 19px;" href="add_book.php" class="btn btn-primary">
+    return '<a style="margin: 19px;" href="add_bike.php" class="btn btn-primary">
         Lisää uusi pyörä</a>';
 }
 
 function getEditBookButton($bookid){
-   return '<form action="edit_book.php" method="post"> 
+   return '<form action="edit_bike.php" method="post"> 
            <input type="hidden" name="id" value="'.$bookid.'">
            <button class="btn btn-secondary" type="submit">Muokkaa</button> 
            </form>';

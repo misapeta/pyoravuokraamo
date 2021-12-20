@@ -1,7 +1,7 @@
 <?php
 
 
-class BookFixFactory {
+class BikeFixFactory {
 
 public function createBookFixFromArray($array_book_fix) { 
             $book_fix = new BikeFix();

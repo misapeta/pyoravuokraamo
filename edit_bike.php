@@ -1,6 +1,6 @@
 <?php
 
-require_once('./dao/BookDAO.php');
+require_once('./dao/BikeDAO.php');
 require_once('./model/Bike.php');
 require_once('./components/BikeComponents.php');
 require_once ('views/header.php');
@@ -13,14 +13,14 @@ require_once('utils/SanitizationService.php');
 my_error_logging_principles();
 
 
-$bookDAO = new BookDAO();
+$bikeDAO = new BikeDAO();
 $purifier=new SanitizationService();
 $bike=null;
 
 if (isset($_POST["id"])){
    ##echo $_POST["id"];
    $id = $_POST["id"];
-   $bike = $bookDAO->getBookById($id);  
+   $bike = $bikeDAO->getBookById($id);  
   }
   else {
          //Päätetään sivun kirjoitus, kun tarvittavaa 

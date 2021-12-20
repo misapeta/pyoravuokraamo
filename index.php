@@ -4,30 +4,30 @@
 
 ## Liitä luokka mukaan kerran, jos samaa tarvitaan useassa 
 ## modulissa, kuten yleensä on asia.
-require_once('./dao/BookDAO.php');
-require_once('./dao/BookFixDAO.php');
+require_once('./dao/BikeDAO.php');
+require_once('./dao/BikeFixDAO.php');
 require_once('./model/Bike.php');
 require_once('./components/BikeComponents.php');
 require_once ('views/header.php');
 require_once('utils/SanitizationService.php');
-require_once('factories/BookFactory.php');
+require_once('factories/BikeFactory.php');
 
 
 my_error_logging_principles();
 
 
-$bookDAO = new BookDAO();
-$bookFixDAO = new BookFixDAO();
+$bikeDAO = new BikeDAO();
+$bikeFixDAO = new BikeFixDAO();
 $purifier=new SanitizationService();
 
-$bookFactory = new BookFactory();
+$bikeFactory = new BikeFactory();
 
 
 ## Kun sivua kutsutaan ensimmäisen kerran, luodaan tarvittavat 
 ## taulut. Näitä ei saa olla mukana tuotantokoodissa, vaan tietokanta
 ## luodaan erikseen. Eli taulunluonti ei ole osa sovellusta!
-#$bookDAO->createBikesTable();
-#$bookFixDAO->createBikeFixTable();
+#$bikeDAO->createBikesTable();
+#$bikeFixDAO->createBikeFixTable();
 
 $status_text = "";
 $error_text = "";
@@ -48,8 +48,8 @@ if (isset($_POST["action"])){
           $error_text="Tarkista syötekentät";
         }
         else {
-          $book = $bookFactory->createBook($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
-          $result = $bookDAO->addBook($book);
+          $book = $bikeFactory->createBook($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
+          $result = $bikeDAO->addBook($book);
           $status_text = "Pyörän lisäys onnistui";
         }
      }
@@ -64,8 +64,8 @@ if (isset($_POST["action"])){
       $p_id = $purifier->sanitizeHtml($_POST['id']);
       //Tarkista myös hidden-parametrina saadut kentät!
       if (is_numeric($p_id)){
-        $bookFixDAO->deleteFixesFromBook($p_id);
-        $result = $bookDAO->deleteBook($p_id);
+        $bikeFixDAO->deleteFixesFromBook($p_id);
+        $result = $bikeDAO->deleteBook($p_id);
         $status_text = "Pyörä poistettiin";
       }
      }
@@ -88,13 +88,13 @@ if (isset($_POST["action"])){
           $error_text="Tarkista syötekentät";
         }
         else if (is_numeric($p_id)){
-           $book = $bookDAO->getBookById($p_id);
+           $book = $bikeDAO->getBookById($p_id);
            if ($book==null){
               $error_text = "Päivitettävää pyörää ei löytynyt";
            }
            else {
-            $bikeToUpdate = $bookFactory->createBook($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number, $p_id);
-             $result = $bookDAO->updateBook($bikeToUpdate);
+            $bikeToUpdate = $bikeFactory->createBook($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number, $p_id);
+             $result = $bikeDAO->updateBook($bikeToUpdate);
              $status_text = "Pyörän tiedot päivitettiin";
            }
         }
@@ -132,7 +132,7 @@ if (isset($_POST["action"])){
 
 <?php 
 
-   $bikes = $bookDAO->getBooks();
+   $bikes = $bikeDAO->getBooks();
    $bikeList = $bikesComponents->getBooksComponent($bikes);
    echo $bikeList;
 ?>     

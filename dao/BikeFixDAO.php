@@ -3,24 +3,22 @@
 require_once('utils/DBUtils.php');
 require_once('model/BikeFix.php');
 require_once ('views/header.php');
-require_once('factories/BookFixFactory.php');
+require_once('factories/BikeFixFactory.php');
 
 my_error_logging_principles();
 
-class BookFixDAO {
+class BikeFixDAO {
 
     
     function __construct() {
-        #print "BOOKFIXDAO constructor\n";
+        #print "BIKEFIXDAO constructor\n";
         $dbutil=new DBUtils();
         $this->dbconnection=$dbutil->connectToDatabase();
-        $this->bookFixFactory = new BookFixFactory();
+        $this->bikeFixFactory = new BikeFixFactory();
     }
 
     public $dbconnection;
-    public $bookFixFactory;
-
-
+    public $bikeFixFactory;
 
 function addBookFix($bookfix){
    
@@ -101,7 +99,7 @@ function getBookFixes($bookid){
         $bikefixes = [];
         foreach ($book_fix_rows as $book_fix_row) {
           //echo print_r($book_row);
-          array_push($bikefixes, $this->bookFixFactory->createBookFixFromArray($book_fix_row));
+          array_push($bikefixes, $this->bikeFixFactory->createBookFixFromArray($book_fix_row));
         }
         return $bikefixes;
     }
@@ -129,7 +127,7 @@ function getBookFixById($id){
         //ennen palautusta.
         else {
             ##echo print_r($book_row);
-            return $this->bookFixFactory->createBookFixFromArray($book_fix_row);
+            return $this->bikeFixFactory->createBookFixFromArray($book_fix_row);
         }
     }
     catch (PDOException $e){

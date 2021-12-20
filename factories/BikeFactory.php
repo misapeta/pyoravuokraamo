@@ -1,7 +1,7 @@
 <?php
 
 
-class BookFactory {
+class BikeFactory {
 
      public function createBookFromArray($array_book) {
         $book = new Bike();

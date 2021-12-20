@@ -27,7 +27,7 @@ function getBookFixForm($bookid){
 
 
 function getNewBookFixButton($bookid){
-    return '<form method="post" action="add_book_fix.php"> 
+    return '<form method="post" action="add_bike_fix.php"> 
             <input type="hidden" name="bookid" value="'.$bookid.'">
             <div class="form-group"> 
             <button type="submit" class="btn btn-primary">Lisää huoltotoimenpide</button>
