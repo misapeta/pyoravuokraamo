@@ -106,8 +106,7 @@ function getBikesComponent($bikes){
             </thead>
             <tbody>';
             foreach($bikes as $bike){  
-                ## Jokaisella kirjalla on oma painike korjauksen lisäämistä
-                ## varten.
+                ## Jokaisella pyörällä on oma painike huoltotoimenpiteen lisäämistä varten.
                 $newBikeFixButton = $this->bikeFixComponents->getBikeFixesButton($bike->id);
                 $editBikeButton = $this->getEditBikeButton($bike->id);
                 $deleteBikeButton = $this->getDeleteBikeButton($bike->id);

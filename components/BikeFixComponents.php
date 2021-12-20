@@ -5,10 +5,9 @@ class BikeFixComponents {
 
 
 ## Kun lisätään lapsitietue, pitää antaa parametrina isätietueen
-## tässä tapauksessa kirjan id, jolle korjaus lisätään. Koska se 
+## tässä tapauksessa pyörän id, jolle korjaus lisätään. Koska se 
 ## on viiteavain, sitä ei näytetä asiakkaalle, vaan käytetään 
 ## hidden tyyppistä kenttää.
-
 function getBikeFixForm($bikeid){
     $form_str='<div>  
             <form method="post" action="bikefixes.php"> 
@@ -25,7 +24,7 @@ function getBikeFixForm($bikeid){
     return $form_str;
 }
 
-
+## Painike, jolla pääsee lisäämään valitulle pyörälle huoltotoimenpiteitä. 
 function getNewBikeFixButton($bikeid){
     return '<form method="post" action="add_bike_fix.php"> 
             <input type="hidden" name="bookid" value="'.$bikeid.'">
@@ -35,8 +34,7 @@ function getNewBikeFixButton($bikeid){
         </div>';
 }
 
-## Painike, jolla pääsee pyörien listaussivulta katsomaan yhden
-## pyörän huoltotoimenpiteitä. 
+## Painike, jolla pääsee pyörien listaussivulta katsomaan yhden pyörän huoltotoimenpiteitä. 
 function getBikeFixesButton($bikeid){
     return '<form method="post" action="bikefixes.php"> 
             <input type="hidden" name="bookid" value="'.$bikeid.'">
@@ -46,6 +44,7 @@ function getBikeFixesButton($bikeid){
         </div>';
 }
 
+## Tulostetaan sivulle pyörälle tehdyt huoltotoimenpiteet
 function getBikeFixesComponent($bikeFixes){
     ##echo print_r($books);
     $bike_fixes_str='<table class="table table-striped">
@@ -59,7 +58,7 @@ function getBikeFixesComponent($bikeFixes){
             </thead>
             <tbody>';
             ##Rivi kerrallaan huoltotoimenpiteet
-## TODO: fixdate String-tyyppiseksi!
+            ## TODO: fixdate String-tyyppiseksi!
             foreach($bikeFixes as $bikeFix){  
                 $bike_fixes_str=$bike_fixes_str.'<tr>
                     <td>'.$bikeFix->id.'</td>
