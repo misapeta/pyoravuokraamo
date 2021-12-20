@@ -29,13 +29,13 @@ if (isset($_POST["bookid"])){
   $bookid = $purifier->sanitizeHtml($_POST["bookid"]);
   ## Olemme saaneet tiedon, mihin pyörään nämä huollot liittyvät.
   ## haetaan tietokannasta kyseisen pyörän nimi sivulla näytettäväksi.
-  $book = $bikeDAO->getBikeById($bookid);
+  $bike = $bikeDAO->getBikeById($bookid);
   
-  if ($book!=null){
+  if ($bike!=null){
     ## Jos löytyi, otsikossa näytetään pyörän nimi.
-    ##echo print_r($book);
+    ##echo print_r($bike);
     ##Huom! muuttuja on voimassa koko loppudokumentin ajan.
-    $bikeName=$book->brand_name;
+    $bikeName=$bike->brand_name;
   }
   else {
    ## ei jatketa pidemmälle.
@@ -126,7 +126,7 @@ if (isset($_POST["action"])){
 
 <?php 
 
-   $bikeFixes = $bikeFixDAO->getBookFixes($bookid);
+   $bikeFixes = $bikeFixDAO->getBikeFixes($bookid);
    
    $bookFixList = $bikeFixComponents->getBikeFixesComponent($bikeFixes);
    echo $bookFixList;

@@ -43,13 +43,13 @@ if (isset($_POST["action"])){
          $p_bike_year = $purifier->sanitizeHtml($_POST['year']);
          $p_bike_type = $purifier->sanitizeHtml($_POST['type']);
          $p_bike_serial_number = $purifier->sanitizeHtml($_POST['serial_number']);
-         $book_ok=Bike::checkBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
-        if(!$book_ok){
+         $bike_ok=Bike::checkBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
+        if(!$bike_ok){
           $error_text="Tarkista syötekentät";
         }
         else {
           $book = $bikeFactory->createBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
-          $result = $bikeDAO->addBook($book);
+          $result = $bikeDAO->addBike($book);
           $status_text = "Pyörän lisäys onnistui";
         }
      }
@@ -81,10 +81,10 @@ if (isset($_POST["action"])){
         $p_bike_year = $purifier->sanitizeHtml($_POST['year']);
         $p_bike_type = $purifier->sanitizeHtml($_POST['type']);
         $p_bike_serial_number = $purifier->sanitizeHtml($_POST['serial_number']);
-        $book_ok=Bike::checkBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
+        $bike_ok=Bike::checkBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
 
        
-        if(!$book_ok){
+        if(!$bike_ok){
           $error_text="Tarkista syötekentät";
         }
         else if (is_numeric($p_id)){

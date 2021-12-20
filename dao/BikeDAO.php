@@ -26,22 +26,22 @@ class BikeDAO {
 
 
 
-function addBook($book){
+function addBike($bike){
     try { 
         $sql = 'INSERT INTO BIKES (brand_name, model, year, type, serial_number) VALUES(:brand_name, :model, :year, :type, :serial_number)';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $sth->bindParam('brand_name', $book->brand_name, PDO::PARAM_STR);
-        $sth->bindParam('model', $book->model, PDO::PARAM_STR);
-        $sth->bindParam('year', $book->year, PDO::PARAM_STR);
-        $sth->bindParam('type', $book->type, PDO::PARAM_STR);
-        $sth->bindParam('serial_number', $book->serial_number, PDO::PARAM_STR);
+        $sth->bindParam('brand_name', $bike->brand_name, PDO::PARAM_STR);
+        $sth->bindParam('model', $bike->model, PDO::PARAM_STR);
+        $sth->bindParam('year', $bike->year, PDO::PARAM_STR);
+        $sth->bindParam('type', $bike->type, PDO::PARAM_STR);
+        $sth->bindParam('serial_number', $bike->serial_number, PDO::PARAM_STR);
         
         $result = $sth->execute();
         return $result;
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when adding a book!"));
+        throw (new Exception("Error when adding a bike!"));
     }
 }
 
@@ -84,22 +84,21 @@ function deleteBike($id){
 }
 
 /**
- * Return list of Book -objects. You need to convert every row to 
- * object using the constructor of the Book-class, which converts 
- * array to object.
+ * Palauttaa listan Bike -objekteista. Konvertoidaan jokainen rivi
+ * objektiksi Bike-luokan konstruktorin avulla (joka hoitaa konvertoinnin)
  **/
 function getBikes(){
     try {
         $sql = 'SELECT * FROM BIKES';  
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute();
-        $book_rows = $sth->fetchAll();
-        $books = [];
-        foreach ($book_rows as $book_row) {
-          //echo print_r($book_row);
-          array_push($books, $this->bikeFactory->createBikeFromArray($book_row));
+        $bike_rows = $sth->fetchAll();
+        $bikes = [];
+        foreach ($bike_rows as $bike_row) {
+          //echo print_r($bike_row);
+          array_push($bikes, $this->bikeFactory->createBikeFromArray($bike_row));
         }
-        return $books;
+        return $bikes;
     }
     catch (PDOException $exception) {
         error_log($exception->getMessage());
@@ -114,15 +113,15 @@ function getBikeById($id){
         WHERE id = :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute(array(':id' => $id));
-        $book_row = $sth->fetch();
-        if ($book_row==null){
+        $bike_row = $sth->fetch();
+        if ($bike_row==null){
             //echo "book was null";
             return null;
         }
         //Kun rivejä on vain yksi, muunnetaan se pyörä-objektiksi ennen palautusta.
         else {
-            ##echo print_r($book_row);
-            return $this->bikeFactory->createBikeFromArray($book_row);
+            ##echo print_r($bike_row);
+            return $this->bikeFactory->createBikeFromArray($bike_row);
         }
     }
     catch (PDOException $e){

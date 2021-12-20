@@ -23,7 +23,7 @@ class BikeFixDAO {
 function addBikeFix($bikefix){
    
     try { 
-        $sql = 'INSERT INTO BOOKFIX (description, fixdate, bookid) VALUES(:description, :fixdate, :bookid)';
+        $sql = 'INSERT INTO BIKEFIX (description, fixdate, bookid) VALUES(:description, :fixdate, :bookid)';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->bindParam('description', $bikefix->description, PDO::PARAM_STR, 200);
         $sth->bindParam('fixdate', $bikefix->fixdate, PDO::PARAM_STR, 10);
@@ -41,7 +41,7 @@ function addBikeFix($bikefix){
 function updateBookFix($bookfix){
     try { 
         ##echo print_r($book);
-        $sql = 'UPDATE BOOKFIX SET description= :description, fixdate= :fixdate, bookid= :bookid WHERE id= :id';
+        $sql = 'UPDATE BIKEFIX SET description= :description, fixdate= :fixdate, bookid= :bookid WHERE id= :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->bindValue('id', $bookfix->id);
         $sth->bindValue('description', $bookfix->description);
@@ -59,7 +59,7 @@ function updateBookFix($bookfix){
 
 function deleteBikeFix($id){
     try { 
-        $sql = 'DELETE FROM BOOKFIX 
+        $sql = 'DELETE FROM BIKEFIX 
         WHERE id = :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute(array(':id' => $id));
@@ -73,7 +73,7 @@ function deleteBikeFix($id){
 
 function deleteFixesFromBike($bookid){
     try { 
-        $sql = 'DELETE FROM BOOKFIX  
+        $sql = 'DELETE FROM BIKEFIX  
         WHERE bookid = :bookid';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute(array(':bookid' => $bookid));
@@ -89,16 +89,16 @@ function deleteFixesFromBike($bookid){
  * bikefixes, but book fixes related to certain book.
 **/
 
-function getBookFixes($bookid){
+function getBikeFixes($bookid){
     try {
-        $sql = 'SELECT * FROM BOOKFIX WHERE BOOKID=:bookid';  
+        $sql = 'SELECT * FROM BIKEFIX WHERE BOOKID=:bookid';  
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute(array(':bookid' => $bookid));
-        $book_fix_rows = $sth->fetchAll();
+        $bike_fix_rows = $sth->fetchAll();
         $bikefixes = [];
-        foreach ($book_fix_rows as $book_fix_row) {
+        foreach ($bike_fix_rows as $bike_fix_row) {
           //echo print_r($book_row);
-          array_push($bikefixes, $this->bikeFixFactory->createBikeFixFromArray($book_fix_row));
+          array_push($bikefixes, $this->bikeFixFactory->createBikeFixFromArray($bike_fix_row));
         }
         return $bikefixes;
     }
@@ -111,14 +111,14 @@ function getBookFixes($bookid){
 
 
 
-function getBookFixById($id){
+function getBikeFixById($id){
     try { 
-        $sql = 'SELECT * FROM BOOKFIX  
+        $sql = 'SELECT * FROM BIKEFIX  
         WHERE id = :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute(array(':id' => $id));
-        $book_fix_row = $sth->fetch();
-        if ($book_fix_row==null){
+        $bike_fix_row = $sth->fetch();
+        if ($bike_fix_row==null){
             echo "boofix was null";
             return null;
         }
@@ -126,12 +126,12 @@ function getBookFixById($id){
         //ennen palautusta.
         else {
             ##echo print_r($book_row);
-            return $this->bikeFixFactory->createBikeFixFromArray($book_fix_row);
+            return $this->bikeFixFactory->createBikeFixFromArray($bike_fix_row);
         }
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when getting book by id!"));
+        throw (new Exception("Error when getting bike by id!"));
     }
 }
 
@@ -147,7 +147,7 @@ function createBikeFixTable(){
          $dbutils=new DBUtils();
          $db=$dbutils->connectToDatabase();
          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-         $sql = "CREATE TABLE BOOKFIX (
+         $sql = "CREATE TABLE BIKEFIX (
              id INTEGER PRIMARY KEY AUTOINCREMENT,
              description TEXT NOT NULL,
              fixdate VARCHAR(200) NOT NULL,
