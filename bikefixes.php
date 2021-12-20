@@ -26,10 +26,10 @@ $purifier=new SanitizationService();
 
 
 if (isset($_POST["bookid"])){
-  $bookid = $purifier->sanitizeHtml($_POST["bookid"]);
+  $bikeid = $purifier->sanitizeHtml($_POST["bookid"]);
   ## Olemme saaneet tiedon, mihin pyörään nämä huollot liittyvät.
   ## haetaan tietokannasta kyseisen pyörän nimi sivulla näytettäväksi.
-  $bike = $bikeDAO->getBikeById($bookid);
+  $bike = $bikeDAO->getBikeById($bikeid);
   
   if ($bike!=null){
     ## Jos löytyi, otsikossa näytetään pyörän nimi.
@@ -116,9 +116,9 @@ if (isset($_POST["action"])){
   print_status_message($error_text, "error");
   $navigation = getNavigation();
   $bikeFixComponents = new BikeFixComponents();
-  $new_book_fix_button = $bikeFixComponents->getNewBikeFixButton($bookid); 
+  $new_bike_fix_button = $bikeFixComponents->getNewBikeFixButton($bikeid); 
   echo $navigation;
-  echo $new_book_fix_button;
+  echo $new_bike_fix_button;
 ?>
 
 
@@ -126,10 +126,10 @@ if (isset($_POST["action"])){
 
 <?php 
 
-   $bikeFixes = $bikeFixDAO->getBikeFixes($bookid);
+   $bikeFixes = $bikeFixDAO->getBikeFixes($bikeid);
    
-   $bookFixList = $bikeFixComponents->getBikeFixesComponent($bikeFixes);
-   echo $bookFixList;
+   $bikeFixList = $bikeFixComponents->getBikeFixesComponent($bikeFixes);
+   echo $bikeFixList;
 ?>     
 </div>
 

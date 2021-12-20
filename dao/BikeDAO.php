@@ -45,7 +45,7 @@ function addBike($bike){
     }
 }
 
-function updateBook($book){
+function updateBike($book){
     try { 
         ##echo print_r($book);
         $sql = 'UPDATE BIKES SET brand_name=:brand_name, model=:model, year=:year, type=:type, serial_number=:serial_number WHERE id= :id';

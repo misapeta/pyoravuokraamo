@@ -14,7 +14,6 @@ public $bikeFixComponents;
  *  Funktio palauttaa vakio-merkkijonon. Määrittelemällä se staattiseksi
   * funktio toimii nopeasti. 
 **/
-
 static function getBikeForm(){
     $form_str='<div>  
             <form method="post" action="index.php"> 
@@ -42,7 +41,7 @@ static function getBikeForm(){
 }
 
 function getEditBikeForm($bike){
-    ##echo print_r($book);
+    ##echo print_r($bike);
     $form_str='<div>  
             <form method="post" action="index.php"> 
             <div class="form-group"> 
@@ -76,16 +75,16 @@ function getNewBikeButton(){
         Lisää uusi pyörä</a>';
 }
 
-function getEditBikeButton($bookid){
+function getEditBikeButton($bikeid){
    return '<form action="edit_bike.php" method="post"> 
-           <input type="hidden" name="id" value="'.$bookid.'">
+           <input type="hidden" name="id" value="'.$bikeid.'">
            <button class="btn btn-secondary" type="submit">Muokkaa</button> 
            </form>';
 }
 
-function getDeleteBikeButton($bookid){
+function getDeleteBikeButton($bikeid){
     return '<form action="index.php" method="post">
-            <input type="hidden" name="id" value="'.$bookid.'">
+            <input type="hidden" name="id" value="'.$bikeid.'">
             <button class="btn btn-danger" name="action" value="deleteBike" type="submit">Poista</button> 
             </form>';
 }
@@ -106,20 +105,20 @@ function getBikesComponent($bikes){
                 </tr>
             </thead>
             <tbody>';
-            foreach($bikes as $book){  
+            foreach($bikes as $bike){  
                 ## Jokaisella kirjalla on oma painike korjauksen lisäämistä
                 ## varten.
-                $newBikeFixButton = $this->bikeFixComponents->getBikeFixesButton($book->id);
-                $editBikeButton = $this->getEditBikeButton($book->id);
-                $deleteBikeButton = $this->getDeleteBikeButton($book->id);
+                $newBikeFixButton = $this->bikeFixComponents->getBikeFixesButton($bike->id);
+                $editBikeButton = $this->getEditBikeButton($bike->id);
+                $deleteBikeButton = $this->getDeleteBikeButton($bike->id);
 
                 $bikes_str=$bikes_str.'<tr>
-                    <td>'.$book->id.'</td>
-                    <td>'.$book->brand_name.'</td>
-                    <td>'.$book->model.'</td>
-                    <td>'.$book->year.'</td>
-                    <td>'.$book->type.'</td>
-                    <td>'.$book->serial_number.'</td>
+                    <td>'.$bike->id.'</td>
+                    <td>'.$bike->brand_name.'</td>
+                    <td>'.$bike->model.'</td>
+                    <td>'.$bike->year.'</td>
+                    <td>'.$bike->type.'</td>
+                    <td>'.$bike->serial_number.'</td>
                     
                     <td>'.$newBikeFixButton.'</td>
                     <td>

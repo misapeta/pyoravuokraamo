@@ -25,7 +25,7 @@ if (isset($_POST["id"])){
   else {
          //Päätetään sivun kirjoitus, kun tarvittavaa 
          //parametria ei ole annettu.
-         return("<html>Kirjan id puuttuu</html>");
+         return("<html>Pyörän id puuttuu</html>");
    }
   $navigation = getNavigation();
   $bikesComponents = new BikeComponents();

@@ -38,21 +38,21 @@ function addBikeFix($bikefix){
     }
 }
 
-function updateBookFix($bookfix){
+function updateBikeFix($bikefix){
     try { 
         ##echo print_r($book);
         $sql = 'UPDATE BIKEFIX SET description= :description, fixdate= :fixdate, bookid= :bookid WHERE id= :id';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $sth->bindValue('id', $bookfix->id);
-        $sth->bindValue('description', $bookfix->description);
-        $sth->bindValue('fixdate', $bookfix->fixdate);
-        $sth->bindValue('bookid', $bookfix->bookid);
+        $sth->bindValue('id', $bikefix->id);
+        $sth->bindValue('description', $bikefix->description);
+        $sth->bindValue('fixdate', $bikefix->fixdate);
+        $sth->bindValue('bookid', $bikefix->bookid);
         $result = $sth->execute();
         return $result;
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when updating a book!"));
+        throw (new Exception("Error when updating a bike!"));
     }
 }
 
@@ -109,8 +109,6 @@ function getBikeFixes($bookid){
 }
 
 
-
-
 function getBikeFixById($id){
     try { 
         $sql = 'SELECT * FROM BIKEFIX  
@@ -119,7 +117,7 @@ function getBikeFixById($id){
         $sth->execute(array(':id' => $id));
         $bike_fix_row = $sth->fetch();
         if ($bike_fix_row==null){
-            echo "boofix was null";
+            echo "bikefix was null";
             return null;
         }
         //Kun rivejä on vain yksi, muunnetaan se kirjakorjaus-objektiksi
@@ -136,12 +134,11 @@ function getBikeFixById($id){
 }
 
 /**
- * Huomaa, SQLLitessä ei ole date-tyyppistä kenttää, joka olisi
-  *oikea tietotyyppi päivämäärälle. Tässä pvm talletetaan 
+ * Huomaa, SQLitessä ei ole date-tyyppistä kenttää, joka olisi
+ * oikea tietotyyppi päivämäärälle. Tässä pvm talletetaan 
  * varchar-kenttään tekstinä. Se voidaan muuntaa päivämääräksi 
-  *ohjelmakoodissa.
-  **/
-
+ * ohjelmakoodissa.
+**/
 function createBikeFixTable(){
     try {
          $dbutils=new DBUtils();

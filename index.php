@@ -48,8 +48,8 @@ if (isset($_POST["action"])){
           $error_text="Tarkista syötekentät";
         }
         else {
-          $book = $bikeFactory->createBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
-          $result = $bikeDAO->addBike($book);
+          $bike = $bikeFactory->createBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
+          $result = $bikeDAO->addBike($bike);
           $status_text = "Pyörän lisäys onnistui";
         }
      }
@@ -73,7 +73,7 @@ if (isset($_POST["action"])){
        $error_text = "Pyörän poisto epäonnistui";
      }
    }
-   else if ($action == "updateBook"){
+   else if ($action == "updateBike"){
      try {
         $p_id = $purifier->sanitizeHtml($_POST['id']);
         $p_bike_brand_name = $purifier->sanitizeHtml($_POST['brand_name']);
@@ -94,7 +94,7 @@ if (isset($_POST["action"])){
            }
            else {
             $bikeToUpdate = $bikeFactory->createBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number, $p_id);
-             $result = $bikeDAO->updateBook($bikeToUpdate);
+             $result = $bikeDAO->updateBike($bikeToUpdate);
              $status_text = "Pyörän tiedot päivitettiin";
            }
         }
