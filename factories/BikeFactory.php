@@ -22,7 +22,7 @@ class BikeFactory {
     }
 
       
-    public function createBook($brand_name, $model, $year, $type, $serial_number, $id=null) {
+    public function createBike($brand_name, $model, $year, $type, $serial_number, $id=null) {
             $bike = new Bike();
             $bike->id = $id;
             $bike->brand_name = $brand_name;

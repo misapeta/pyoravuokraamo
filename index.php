@@ -48,7 +48,7 @@ if (isset($_POST["action"])){
           $error_text="Tarkista syötekentät";
         }
         else {
-          $book = $bikeFactory->createBook($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
+          $book = $bikeFactory->createBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number);
           $result = $bikeDAO->addBook($book);
           $status_text = "Pyörän lisäys onnistui";
         }
@@ -93,7 +93,7 @@ if (isset($_POST["action"])){
               $error_text = "Päivitettävää pyörää ei löytynyt";
            }
            else {
-            $bikeToUpdate = $bikeFactory->createBook($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number, $p_id);
+            $bikeToUpdate = $bikeFactory->createBike($p_bike_brand_name, $p_bike_model, $p_bike_year, $p_bike_type, $p_bike_serial_number, $p_id);
              $result = $bikeDAO->updateBook($bikeToUpdate);
              $status_text = "Pyörän tiedot päivitettiin";
            }

@@ -35,7 +35,7 @@ if (isset($_POST["bookid"])){
     ## Jos löytyi, otsikossa näytetään pyörän nimi.
     ##echo print_r($book);
     ##Huom! muuttuja on voimassa koko loppudokumentin ajan.
-    $bookName=$book->brand_name;
+    $bikeName=$book->brand_name;
   }
   else {
    ## ei jatketa pidemmälle.
@@ -60,7 +60,7 @@ $error_text = "";
 if (isset($_POST["action"])){
    $action = $_POST["action"]; 
 
-    if ($action == "addNewBookFix"){
+    if ($action == "addNewBikeFix"){
       try {
         $p_description = $purifier->sanitizeHtml($_POST['description']);
         $p_fixdate = $purifier->sanitizeHtml($_POST['fixdate']);
@@ -72,8 +72,8 @@ if (isset($_POST["action"])){
           $error_text = "Tarkista syötekentät";
         }
         else {
-          $bookFix = $bikeFixFactory->createBookFix($p_description, $p_fixdate, $p_book_id);
-          $result = $bikeFixDAO->addBookFix($bookFix);
+          $bookFix = $bikeFixFactory->createBikeFix($p_description, $p_fixdate, $p_book_id);
+          $result = $bikeFixDAO->addBikeFix($bookFix);
         }
        }
       catch (Exception $e){
@@ -116,13 +116,13 @@ if (isset($_POST["action"])){
   print_status_message($error_text, "error");
   $navigation = getNavigation();
   $bikeFixComponents = new BikeFixComponents();
-  $new_book_fix_button = $bikeFixComponents->getNewBookFixButton($bookid); 
+  $new_book_fix_button = $bikeFixComponents->getNewBikeFixButton($bookid); 
   echo $navigation;
   echo $new_book_fix_button;
 ?>
 
 
- <h1 class="display-5">Huoltotoimenpiteet pyörälle <?php echo $bookName ?></h1>
+ <h1 class="display-5">Huoltotoimenpiteet pyörälle <?php echo $bikeName ?></h1>
 
 <?php 
 

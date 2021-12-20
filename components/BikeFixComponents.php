@@ -9,38 +9,37 @@ class BikeFixComponents {
 ## on viiteavain, sitä ei näytetä asiakkaalle, vaan käytetään 
 ## hidden tyyppistä kenttää.
 
-function getBookFixForm($bookid){
+function getBikeFixForm($bikeid){
     $form_str='<div>  
             <form method="post" action="bikefixes.php"> 
             <div class="form-group"> 
-            <input type="hidden" name="bookid" value="'.$bookid.'">
+            <input type="hidden" name="bookid" value="'.$bikeid.'">
             <label for="name">Kuvaus:</label> 
             <input type="text" class="form-control" name="description" /> </div>
             <div class="form-group"> 
             <label for="fixdate">Huoltopvm (vvvv-kk-pp):</label> 
             <input type="text" class="form-control" name="fixdate" /> </div>
-            <button type="submit" class="btn btn-primary" name="action" value ="addNewBookFix">Lisää korjaus</button>
+            <button type="submit" class="btn btn-primary" name="action" value ="addNewBikeFix">Lisää huoltotoimenpide</button>
             </form>
         </div>';
     return $form_str;
 }
 
 
-function getNewBookFixButton($bookid){
+function getNewBikeFixButton($bikeid){
     return '<form method="post" action="add_bike_fix.php"> 
-            <input type="hidden" name="bookid" value="'.$bookid.'">
+            <input type="hidden" name="bookid" value="'.$bikeid.'">
             <div class="form-group"> 
             <button type="submit" class="btn btn-primary">Lisää huoltotoimenpide</button>
             </form>
         </div>';
 }
 
-## Painike, jolla pääsee kirjalistaussivulta katsomaan yhden
-## kirjan korjauksia. 
-
-function getBikeFixesButton($bookid){
+## Painike, jolla pääsee pyörien listaussivulta katsomaan yhden
+## pyörän huoltotoimenpiteitä. 
+function getBikeFixesButton($bikeid){
     return '<form method="post" action="bikefixes.php"> 
-            <input type="hidden" name="bookid" value="'.$bookid.'">
+            <input type="hidden" name="bookid" value="'.$bikeid.'">
             <div class="form-group"> 
             <button type="submit" class="btn btn-primary">Näytä huoltohistoria</button>
             </form>
@@ -59,6 +58,8 @@ function getBikeFixesComponent($bikeFixes){
                 </tr>
             </thead>
             <tbody>';
+            ##Rivi kerrallaan huoltotoimenpiteet
+## TODO: fixdate String-tyyppiseksi!
             foreach($bikeFixes as $bikeFix){  
                 $bike_fixes_str=$bike_fixes_str.'<tr>
                     <td>'.$bikeFix->id.'</td>

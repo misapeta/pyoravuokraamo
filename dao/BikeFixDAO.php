@@ -20,21 +20,21 @@ class BikeFixDAO {
     public $dbconnection;
     public $bikeFixFactory;
 
-function addBookFix($bookfix){
+function addBikeFix($bikefix){
    
     try { 
         $sql = 'INSERT INTO BOOKFIX (description, fixdate, bookid) VALUES(:description, :fixdate, :bookid)';
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $sth->bindParam('description', $bookfix->description, PDO::PARAM_STR, 200);
-        $sth->bindParam('fixdate', $bookfix->fixdate, PDO::PARAM_STR, 10);
-        $sth->bindParam('bookid', $bookfix->bookid, PDO::PARAM_INT);
+        $sth->bindParam('description', $bikefix->description, PDO::PARAM_STR, 200);
+        $sth->bindParam('fixdate', $bikefix->fixdate, PDO::PARAM_STR, 10);
+        $sth->bindParam('bookid', $bikefix->bookid, PDO::PARAM_INT);
         
         $result = $sth->execute();
         return $result;
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when adding a bookfix!"));
+        throw (new Exception("Error when adding a bikefix!"));
     }
 }
 
@@ -98,7 +98,7 @@ function getBookFixes($bookid){
         $bikefixes = [];
         foreach ($book_fix_rows as $book_fix_row) {
           //echo print_r($book_row);
-          array_push($bikefixes, $this->bikeFixFactory->createBookFixFromArray($book_fix_row));
+          array_push($bikefixes, $this->bikeFixFactory->createBikeFixFromArray($book_fix_row));
         }
         return $bikefixes;
     }
@@ -126,7 +126,7 @@ function getBookFixById($id){
         //ennen palautusta.
         else {
             ##echo print_r($book_row);
-            return $this->bikeFixFactory->createBookFixFromArray($book_fix_row);
+            return $this->bikeFixFactory->createBikeFixFromArray($book_fix_row);
         }
     }
     catch (PDOException $e){

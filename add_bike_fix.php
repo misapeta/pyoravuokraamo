@@ -16,7 +16,7 @@ my_error_logging_principles();
  if (isset($_POST["bookid"]))
 {
   $bookid=$_POST["bookid"];
-  $book_fix_form = $bikeFixComponents->getBookFixForm($bookid); 
+  $book_fix_form = $bikeFixComponents->getBikeFixForm($bookid); 
 }
 else {
     ## Virhe. Puutteelliset parametrit! Lopetetaan 
