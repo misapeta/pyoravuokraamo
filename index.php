@@ -58,14 +58,14 @@ if (isset($_POST["action"])){
        $error_text = "Pyörän lisäys epäonnistui";
      }
    }
-   else if ($action == "deleteBook"){
+   else if ($action == "deleteBike"){
      try {
       //Puhdista myös hidden-parametrina saadut kentät!
       $p_id = $purifier->sanitizeHtml($_POST['id']);
       //Tarkista myös hidden-parametrina saadut kentät!
       if (is_numeric($p_id)){
-        $bikeFixDAO->deleteFixesFromBook($p_id);
-        $result = $bikeDAO->deleteBook($p_id);
+        $bikeFixDAO->deleteFixesFromBike($p_id);
+        $result = $bikeDAO->deleteBike($p_id);
         $status_text = "Pyörä poistettiin";
       }
      }
@@ -88,7 +88,7 @@ if (isset($_POST["action"])){
           $error_text="Tarkista syötekentät";
         }
         else if (is_numeric($p_id)){
-           $book = $bikeDAO->getBookById($p_id);
+           $book = $bikeDAO->getBikeById($p_id);
            if ($book==null){
               $error_text = "Päivitettävää pyörää ei löytynyt";
            }
@@ -123,7 +123,7 @@ if (isset($_POST["action"])){
 
   $navigation = getNavigation();
   $bikesComponents = new BikeComponents();
-  $new_bike_button = $bikesComponents->getNewBookButton(); 
+  $new_bike_button = $bikesComponents->getNewBikeButton(); 
   echo $navigation;
   echo $new_bike_button;
 ?>
@@ -132,8 +132,8 @@ if (isset($_POST["action"])){
 
 <?php 
 
-   $bikes = $bikeDAO->getBooks();
-   $bikeList = $bikesComponents->getBooksComponent($bikes);
+   $bikes = $bikeDAO->getBikes();
+   $bikeList = $bikesComponents->getBikesComponent($bikes);
    echo $bikeList;
 ?>     
 </div>

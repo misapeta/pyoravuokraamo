@@ -57,7 +57,7 @@ function updateBookFix($bookfix){
 }
 
 
-function deleteBookFix($id){
+function deleteBikeFix($id){
     try { 
         $sql = 'DELETE FROM BOOKFIX 
         WHERE id = :id';
@@ -70,9 +70,8 @@ function deleteBookFix($id){
     }
 }
 
-//deleteFixesFromBook
 
-function deleteFixesFromBook($bookid){
+function deleteFixesFromBike($bookid){
     try { 
         $sql = 'DELETE FROM BOOKFIX  
         WHERE bookid = :bookid';

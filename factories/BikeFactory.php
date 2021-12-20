@@ -3,7 +3,7 @@
 
 class BikeFactory {
 
-     public function createBookFromArray($array_book) {
+     public function createBikeFromArray($array_book) {
         $book = new Bike();
         if (isset($array_book['id']))
             $book->id=$array_book['id'];

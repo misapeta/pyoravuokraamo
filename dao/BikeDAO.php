@@ -70,7 +70,7 @@ function updateBook($book){
   * vuokraukset poistaa ennen kuin pyörä voidaan poistaa. Muuten 
   * pyörän poisto epäonnistuu lapsitietuiden vuoksi.
 **/
-function deleteBook($id){
+function deleteBike($id){
     try { 
         $sql = 'DELETE FROM BIKES  
         WHERE id = :id';
@@ -88,7 +88,7 @@ function deleteBook($id){
  * object using the constructor of the Book-class, which converts 
  * array to object.
  **/
-function getBooks(){
+function getBikes(){
     try {
         $sql = 'SELECT * FROM BIKES';  
         $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -97,7 +97,7 @@ function getBooks(){
         $books = [];
         foreach ($book_rows as $book_row) {
           //echo print_r($book_row);
-          array_push($books, $this->bikeFactory->createBookFromArray($book_row));
+          array_push($books, $this->bikeFactory->createBikeFromArray($book_row));
         }
         return $books;
     }
@@ -108,7 +108,7 @@ function getBooks(){
 }
 
 
-function getBookById($id){
+function getBikeById($id){
     try { 
         $sql = 'SELECT * FROM BIKES  
         WHERE id = :id';
@@ -122,7 +122,7 @@ function getBookById($id){
         //Kun rivejä on vain yksi, muunnetaan se pyörä-objektiksi ennen palautusta.
         else {
             ##echo print_r($book_row);
-            return $this->bikeFactory->createBookFromArray($book_row);
+            return $this->bikeFactory->createBikeFromArray($book_row);
         }
     }
     catch (PDOException $e){

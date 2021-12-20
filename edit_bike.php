@@ -20,7 +20,7 @@ $bike=null;
 if (isset($_POST["id"])){
    ##echo $_POST["id"];
    $id = $_POST["id"];
-   $bike = $bikeDAO->getBookById($id);  
+   $bike = $bikeDAO->getBikeById($id);  
   }
   else {
          //Päätetään sivun kirjoitus, kun tarvittavaa 

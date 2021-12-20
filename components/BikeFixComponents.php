@@ -38,7 +38,7 @@ function getNewBookFixButton($bookid){
 ## Painike, jolla pääsee kirjalistaussivulta katsomaan yhden
 ## kirjan korjauksia. 
 
-function getBookFixesButton($bookid){
+function getBikeFixesButton($bookid){
     return '<form method="post" action="bikefixes.php"> 
             <input type="hidden" name="bookid" value="'.$bookid.'">
             <div class="form-group"> 
@@ -68,7 +68,7 @@ function getBikeFixesComponent($bikeFixes){
                         <form action="bikefixes.php" method="post"> 
                         <input type="hidden" name="id" value="'.$bikeFix->id.'">
                         <input type="hidden" name="bookid" value="'.$bikeFix->bookid.'">
-                        <button class="btn btn-danger" name="action" value="deleteBookFix" type="submit">Poista</button> 
+                        <button class="btn btn-danger" name="action" value="deleteBikeFix" type="submit">Poista</button> 
                         </form>
                     </td>
                 </tr>';

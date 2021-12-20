@@ -29,7 +29,7 @@ if (isset($_POST["bookid"])){
   $bookid = $purifier->sanitizeHtml($_POST["bookid"]);
   ## Olemme saaneet tiedon, mihin pyörään nämä huollot liittyvät.
   ## haetaan tietokannasta kyseisen pyörän nimi sivulla näytettäväksi.
-  $book = $bikeDAO->getBookById($bookid);
+  $book = $bikeDAO->getBikeById($bookid);
   
   if ($book!=null){
     ## Jos löytyi, otsikossa näytetään pyörän nimi.
@@ -80,7 +80,7 @@ if (isset($_POST["action"])){
         $error_text="Huoltotoimenpiteen lisääminen epäonnistui";
       }
     }
-    else if ($action == "deleteBookFix"){
+    else if ($action == "deleteBikeFix"){
       try {
         $p_id = $purifier->sanitizeHtml($_POST['id']);
         //Ei anneta tietoa käyttäjälle epäonnistumisesta, koska 
@@ -89,7 +89,7 @@ if (isset($_POST["action"])){
         //yrittänyt jotain luvatonta, eli muokannut hidden-kenttää 
         //itse. 
         if (is_numeric($p_id)){
-          $result = $bikeFixDAO->deleteBookFix($p_id);
+          $result = $bikeFixDAO->deleteBikeFix($p_id);
         }
       }
       catch (Exception $e){

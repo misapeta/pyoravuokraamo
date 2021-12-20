@@ -71,26 +71,26 @@ function getEditBikeForm($bike){
     return $form_str;
 }
 
-function getNewBookButton(){
+function getNewBikeButton(){
     return '<a style="margin: 19px;" href="add_bike.php" class="btn btn-primary">
         Lisää uusi pyörä</a>';
 }
 
-function getEditBookButton($bookid){
+function getEditBikeButton($bookid){
    return '<form action="edit_bike.php" method="post"> 
            <input type="hidden" name="id" value="'.$bookid.'">
            <button class="btn btn-secondary" type="submit">Muokkaa</button> 
            </form>';
 }
 
-function getDeleteBookButton($bookid){
+function getDeleteBikeButton($bookid){
     return '<form action="index.php" method="post">
             <input type="hidden" name="id" value="'.$bookid.'">
-            <button class="btn btn-danger" name="action" value="deleteBook" type="submit">Poista</button> 
+            <button class="btn btn-danger" name="action" value="deleteBike" type="submit">Poista</button> 
             </form>';
 }
 
-function getBooksComponent($bikes){
+function getBikesComponent($bikes){
     ##echo print_r($bikes);
 
     
@@ -109,9 +109,9 @@ function getBooksComponent($bikes){
             foreach($bikes as $book){  
                 ## Jokaisella kirjalla on oma painike korjauksen lisäämistä
                 ## varten.
-                $newBookFixButton = $this->bikeFixComponents->getBookFixesButton($book->id);
-                $editBookButton = $this->getEditBookButton($book->id);
-                $deleteBookButton = $this->getDeleteBookButton($book->id);
+                $newBikeFixButton = $this->bikeFixComponents->getBikeFixesButton($book->id);
+                $editBikeButton = $this->getEditBikeButton($book->id);
+                $deleteBikeButton = $this->getDeleteBikeButton($book->id);
 
                 $bikes_str=$bikes_str.'<tr>
                     <td>'.$book->id.'</td>
@@ -121,11 +121,11 @@ function getBooksComponent($bikes){
                     <td>'.$book->type.'</td>
                     <td>'.$book->serial_number.'</td>
                     
-                    <td>'.$newBookFixButton.'</td>
+                    <td>'.$newBikeFixButton.'</td>
                     <td>
-                    <td>'.$editBookButton.'</td>
+                    <td>'.$editBikeButton.'</td>
                     <td>
-                        '.$deleteBookButton.'
+                        '.$deleteBikeButton.'
                     </td>
                 </tr>';
             };
