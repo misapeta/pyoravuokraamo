@@ -5,7 +5,6 @@ declare(strict_types=1);
 ## modulissa, kuten yleensä on asia.
 
 require_once ('views/header.php');
-
 require_once('vendor/ezyang/htmlpurifier/library/HTMLPurifier.auto.php');
 
 

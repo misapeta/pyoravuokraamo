@@ -23,8 +23,8 @@ public function createBookFixFromArray($array_book_fix) {
     public function createBookFix($description, $fixdate, $bookid) {
             $book_fix = new BikeFix();
             $book_fix->bookid = $bookid;
-            $book_fix->description = $description;
             $book_fix->fixdate = $fixdate;
+            $book_fix->description = $description;
             return $book_fix;
     }
 }

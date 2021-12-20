@@ -6,11 +6,11 @@ function my_error_logging_principles(){
     ## hakemistoon ei ole pääsyä, tässä ne asetetaan ohjelmallisesti.
     ini_set('log_error', '1');
     ## Älä talleta virhelokia samaan hakemistoon sovelluksen kanssa.
-    ## sovellus sijaitsee tässä /var/www -hakemiostossa, joka on 
+    ## sovellus sijaitsee tässä /var/www -hakemistossa, joka on 
     ## web-palvelimen hallinnassa ja saattaa päätyä julkaistavaksi 
     ## webissä. Koska kirjoitusoikeutta ei ole muihin hakemistoihin, 
     ## logitus tehdään VIRHEELLISESTI web-hakemistoon, jolloin kuka vain voi
-    ## ladata sen url:llä https://9kaec.ciroue.com/libraryerrors.log
+    ## ladata sen url:llä
     ini_set('error_log', 'bikerentalapplicationerrors.log');  
 }
 
@@ -29,7 +29,7 @@ function my_error_logging_principles(){
 
     /**
       * Geneerinen virheviesti Bootstrap-tyyleillä muokattuna. 
-       *Tiedosto otetaan mukaan sivuskipteihin include-lauseella
+       *Tiedosto otetaan mukaan sivuskripteihin include-lauseella
       * siksi käytetään snake-case nimeämistä. Sama sopisi yllä 
        *olevaan getNavigation-funktioon.
       * Huomaa, että tämä funktio ei palauta mitään, vaan tulostaa 

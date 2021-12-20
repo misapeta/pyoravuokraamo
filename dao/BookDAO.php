@@ -61,16 +61,15 @@ function updateBook($book){
     }
     catch (PDOException $e){
         error_log($e->getMessage());
-        throw (new Exception("Error when updating a book!"));
+        throw (new Exception("Error when updating a bike!"));
     }
 }
 
 /**
-  * Kun kirjoihin liitetään lainauksia, pitää kirjaan liittyvät 
- * lainaukset poistaa ennen kuin kirja voidaan poistaa. Muuten 
-   *kirjan poisto epäonnistuu lapsitietuiden vuoksi.
+  * Kun pyöriin liitetään vuokrauksia, pitää pyörään liittyvät 
+  * vuokraukset poistaa ennen kuin pyörä voidaan poistaa. Muuten 
+  * pyörän poisto epäonnistuu lapsitietuiden vuoksi.
 **/
-
 function deleteBook($id){
     try { 
         $sql = 'DELETE FROM BIKES  
@@ -83,12 +82,12 @@ function deleteBook($id){
         throw (new Exception("Error when deleting a book!"));
     }
 }
+
 /**
  * Return list of Book -objects. You need to convert every row to 
-  *object using the constructor of the Book-class, which converts 
+ * object using the constructor of the Book-class, which converts 
  * array to object.
-**/
-
+ **/
 function getBooks(){
     try {
         $sql = 'SELECT * FROM BIKES';  
@@ -104,11 +103,9 @@ function getBooks(){
     }
     catch (PDOException $exception) {
         error_log($exception->getMessage());
-        throw (new Exception("Error when getting books!"));
+        throw (new Exception("Error when getting bikes!"));
     }
 }
-
-
 
 
 function getBookById($id){
@@ -122,8 +119,7 @@ function getBookById($id){
             //echo "book was null";
             return null;
         }
-        //Kun rivejä on vain yksi, muunnetaan se kirja-objektiksi
-        //ennen palautusta.
+        //Kun rivejä on vain yksi, muunnetaan se pyörä-objektiksi ennen palautusta.
         else {
             ##echo print_r($book_row);
             return $this->bookFactory->createBookFromArray($book_row);
@@ -141,7 +137,7 @@ function createBikesTable(){
          $db=$dbutils->connectToDatabase();
          $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
          $sql = "CREATE TABLE BIKES
- (
+         (
              id INTEGER PRIMARY KEY AUTOINCREMENT,
              brand_name VARCHAR(200) NOT NULL,
              model VARCHAR(200) NOT NULL,
@@ -150,8 +146,7 @@ function createBikesTable(){
              serial_number VARCHAR(200) NOT NULL,
              description TEXT
              );";
-        $db->exec($sql);
-        
+         $db->exec($sql);
     }
     catch (Exception $exception){
         //älä liitä mukaan varsinaista virhe tekstiä $exception->getMessage()

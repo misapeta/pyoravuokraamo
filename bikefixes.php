@@ -14,7 +14,7 @@ require_once ('views/header.php');
 my_error_logging_principles();
 
 
-$bookFixDAO = new BookFixDAO();
+$bikeFixDAO = new BookFixDAO();
 $bookDAO = new BookDAO();
 $bookFixFactory = new BookFixFactory();
 $bookFactory = new BookFactory();
@@ -22,20 +22,20 @@ $purifier=new SanitizationService();
 
 ## Tarkista isset-funktiolla, että kyseinen parametri on 
 ## asetettu. bikeid pitää olla aina asetettu, jotta voidaan 
-## hakea oikean kirjan korjaukset.
+## hakea oikean pyörän huollot.
 
 
 if (isset($_POST["bookid"])){
   $bookid = $purifier->sanitizeHtml($_POST["bookid"]);
-  ## Olemme saaneet tiedon, mihin kirjaan nämä korjayket liittyvät.
-  ## haetaan tietokannasta kyseisen kirjan nimi sivulla näytettäväksi.
+  ## Olemme saaneet tiedon, mihin pyörään nämä huollot liittyvät.
+  ## haetaan tietokannasta kyseisen pyörän nimi sivulla näytettäväksi.
   $book = $bookDAO->getBookById($bookid);
   
   if ($book!=null){
-    ## Jos kirja löytyi, otsikossa näytetään kirjan nimi.
+    ## Jos löytyi, otsikossa näytetään pyörän nimi.
     ##echo print_r($book);
     ##Huom! muuttuja on voimassa koko loppudokumentin ajan.
-    $bookName=$book->name;
+    $bookName=$book->brand_name;
   }
   else {
    ## ei jatketa pidemmälle.
@@ -73,11 +73,11 @@ if (isset($_POST["action"])){
         }
         else {
           $bookFix = $bookFixFactory->createBookFix($p_description, $p_fixdate, $p_book_id);
-          $result = $bookFixDAO->addBookFix($bookFix);
+          $result = $bikeFixDAO->addBookFix($bookFix);
         }
        }
       catch (Exception $e){
-        $error_text="Korjauksen lisääminen epäonnistui";
+        $error_text="Huoltotoimenpiteen lisääminen epäonnistui";
       }
     }
     else if ($action == "deleteBookFix"){
@@ -89,11 +89,11 @@ if (isset($_POST["action"])){
         //yrittänyt jotain luvatonta, eli muokannut hidden-kenttää 
         //itse. 
         if (is_numeric($p_id)){
-          $result = $bookFixDAO->deleteBookFix($p_id);
+          $result = $bikeFixDAO->deleteBookFix($p_id);
         }
       }
       catch (Exception $e){
-        $error_text = "Korjauksen poistaminen epäonnistui";
+        $error_text = "Huoltotoimenpiteen poistaminen epäonnistui";
       }
     }
 }
@@ -122,11 +122,12 @@ if (isset($_POST["action"])){
 ?>
 
 
- <h1 class="display-5">Kirjakorjaukset kirjalle <?php echo $bookName ?></h1>
+ <h1 class="display-5">Huoltotoimenpiteet pyörälle <?php echo $bookName ?></h1>
 
 <?php 
 
-   $bikeFixes = $bookFixDAO->getBookFixes($bookid);
+   $bikeFixes = $bikeFixDAO->getBookFixes($bookid);
+   
    $bookFixList = $bikeFixComponents->getBikeFixesComponent($bikeFixes);
    echo $bookFixList;
 ?>     

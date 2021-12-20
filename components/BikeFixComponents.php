@@ -17,7 +17,7 @@ function getBookFixForm($bookid){
             <label for="name">Kuvaus:</label> 
             <input type="text" class="form-control" name="description" /> </div>
             <div class="form-group"> 
-            <label for="fixdate">Korjauspvm (vvvv-kk-pp):</label> 
+            <label for="fixdate">Huoltopvm (vvvv-kk-pp):</label> 
             <input type="text" class="form-control" name="fixdate" /> </div>
             <button type="submit" class="btn btn-primary" name="action" value ="addNewBookFix">Lisää korjaus</button>
             </form>
@@ -30,7 +30,7 @@ function getNewBookFixButton($bookid){
     return '<form method="post" action="add_book_fix.php"> 
             <input type="hidden" name="bookid" value="'.$bookid.'">
             <div class="form-group"> 
-            <button type="submit" class="btn btn-primary">Lisää korjaus</button>
+            <button type="submit" class="btn btn-primary">Lisää huoltotoimenpide</button>
             </form>
         </div>';
 }
@@ -42,7 +42,7 @@ function getBookFixesButton($bookid){
     return '<form method="post" action="bikefixes.php"> 
             <input type="hidden" name="bookid" value="'.$bookid.'">
             <div class="form-group"> 
-            <button type="submit" class="btn btn-primary">Näytä korjaukset</button>
+            <button type="submit" class="btn btn-primary">Näytä huoltohistoria</button>
             </form>
         </div>';
 }
@@ -53,9 +53,9 @@ function getBikeFixesComponent($bikeFixes){
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Fix date</th>
-                    <th>Description</th>
-                    <th style="vertical-align: center">Toimenpiteet</th>
+                    <th>Huolto tehty</th>
+                    <th>Kuvaus huoltotoimenpiteistä</th>
+                    <th style="vertical-align: center">Poisto (Huom: Poistoa ei voi perua!)</th>
                 </tr>
             </thead>
             <tbody>';

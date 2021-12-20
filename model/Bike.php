@@ -2,7 +2,6 @@
 
 class Bike {
 
-    public $id;
     public $brand_name;
     public $model;
     public $year;

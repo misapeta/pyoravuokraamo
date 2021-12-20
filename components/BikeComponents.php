@@ -34,7 +34,7 @@ static function getBikeForm(){
             <label for="serial_number">Sarjanumero</label> 
             <input type="text" class="form-control" name="serial_number" /> </div>
             
-            <button type="submit" name="action" value="addNewBook" class="btn btn-primary">Lisää kirja</button>
+            <button type="submit" name="action" value="addNewBike" class="btn btn-primary">Lisää pyörä</button>
             </form>
         </div>';
 
@@ -64,7 +64,7 @@ function getEditBikeForm($bike){
             <label for="serial_number">Sarjanumero</label> 
             <input type="text" class="form-control" name="serial_number" value="'.$bike->serial_number.'" /> </div>
             
-            <button type="submit" class="btn btn-primary">Tallenna</button>
+            <button type="submit" class="btn btn-primary">Tallenna muuutos</button>
             </form>
         </div>';
 
@@ -73,7 +73,7 @@ function getEditBikeForm($bike){
 
 function getNewBookButton(){
     return '<a style="margin: 19px;" href="add_book.php" class="btn btn-primary">
-        Lisää uusi kirja</a>';
+        Lisää uusi pyörä</a>';
 }
 
 function getEditBookButton($bookid){
@@ -90,29 +90,30 @@ function getDeleteBookButton($bookid){
             </form>';
 }
 
-function getBooksComponent($books){
-    ##echo print_r($books);
+function getBooksComponent($bikes){
+    ##echo print_r($bikes);
 
     
-    $books_str='<table class="table table-striped">
+    $bikes_str='<table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nimi</th>
-                    <th>Kirjailija</th>
-                    <th>Julkaisuvuosi</th>
-                    <th colspan=3 style="vertical-align: center">Toimenpiteet</th>
+                    <th>Malli</th>
+                    <th>Valmistusvuosi (2000->)</th>
+                    <th>Tyyppi</th>
+                    <th colspan=3 style="vertical-align: center">Runkonumero</th>
                 </tr>
             </thead>
             <tbody>';
-            foreach($books as $book){  
+            foreach($bikes as $book){  
                 ## Jokaisella kirjalla on oma painike korjauksen lisäämistä
                 ## varten.
                 $newBookFixButton = $this->bikeFixComponents->getBookFixesButton($book->id);
                 $editBookButton = $this->getEditBookButton($book->id);
                 $deleteBookButton = $this->getDeleteBookButton($book->id);
 
-                $books_str=$books_str.'<tr>
+                $bikes_str=$bikes_str.'<tr>
                     <td>'.$book->id.'</td>
                     <td>'.$book->brand_name.'</td>
                     <td>'.$book->model.'</td>
@@ -128,7 +129,7 @@ function getBooksComponent($books){
                     </td>
                 </tr>';
             };
-                $books_str=$books_str.'</tbody></table>';
-                return $books_str;
+                $bikes_str=$bikes_str.'</tbody></table>';
+                return $bikes_str;
 }
 }
