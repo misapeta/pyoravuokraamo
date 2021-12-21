@@ -85,10 +85,9 @@ function deleteFixesFromBike($bikeid){
 }
 
 /**
-*  Return list of BikeFix -objects. List does not select all 
+ * Return list of BikeFix -objects. List does not select all 
  * bikefixes, but bike fixes related to certain bike.
 **/
-
 function getBikeFixes($bikeid){
     try {
         $sql = 'SELECT * FROM BIKEFIX WHERE BIKEID=:bikeid';  

@@ -30,6 +30,7 @@ class BikeFactory {
             $bike->year = $year;
             $bike->type = $type;
             $bike->serial_number = $serial_number;
+            
             return $bike;
     }
 

@@ -5,6 +5,7 @@
 ## Liitä luokka mukaan kerran, jos samaa tarvitaan useassa 
 ## modulissa, kuten yleensä on asia.
 require_once('./dao/BikeDAO.php');
+require_once('./dao/CustomerDAO.php');
 require_once('./dao/BikeFixDAO.php');
 require_once('./model/Bike.php');
 require_once('./components/BikeComponents.php');
@@ -19,6 +20,7 @@ my_error_logging_principles();
 
 $bikeDAO = new BikeDAO();
 $bikeFixDAO = new BikeFixDAO();
+$customerDAO = new CustomerDAO();
 $purifier=new SanitizationService();
 
 $bikeFactory = new BikeFactory();
@@ -29,6 +31,8 @@ $bikeFactory = new BikeFactory();
 ## luodaan erikseen. Eli taulunluonti ei ole osa sovellusta!
 #$bikeDAO->createBikesTable();
 #$bikeFixDAO->createBikeFixTable();
+#$customerDAO->createCustomersTable();
+
 
 $status_text = "";
 $error_text = "";

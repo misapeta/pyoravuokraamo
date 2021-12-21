@@ -32,9 +32,6 @@ $bikesComponents = new BikeComponents();
 $bike_form = $bikesComponents->getEditBikeForm($bike);
 ?>
 
-
-
-
 <!DOCTYPE html><html lang="en">
 <head>  
 <meta charset="UTF-8">
@@ -45,16 +42,14 @@ $bike_form = $bikesComponents->getEditBikeForm($bike);
 <title>BikeRental</title>  
 <body>  
 <div class="container">    
- <?php
-        
+   <?php        
         echo $navigation
-        
- ?>
+   ?>
+
     <div class="col-sm-8 offset-sm-2">
         <h1 class="display-3">Muokkaa pyörän tietoja</h1>
         <?php
-        echo $bike_form
-        
+            echo $bike_form
         ?>
     </div> 
 </div>  

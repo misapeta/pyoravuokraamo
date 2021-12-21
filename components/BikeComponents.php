@@ -16,7 +16,7 @@ public $bikeFixComponents;
 **/
 static function getBikeForm(){
     $form_str='<div>  
-            <form method="post" action="index.php"> 
+            <form method="post" action="bikes.php"> 
             <div class="form-group"> 
             <label for="brand_name">Merkki *</label> 
             <input type="text" class="form-control" name="brand_name" /> </div>
@@ -43,7 +43,7 @@ static function getBikeForm(){
 function getEditBikeForm($bike){
     ##echo print_r($bike);
     $form_str='<div>  
-            <form method="post" action="index.php"> 
+            <form method="post" action="bikes.php"> 
             <div class="form-group"> 
             <input type="hidden" name="id" value ="'.$bike->id.'">
             <input type="hidden" name="action" value ="updateBike">
