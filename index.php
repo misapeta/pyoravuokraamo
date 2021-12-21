@@ -127,6 +127,7 @@ if (isset($_POST["action"])){
 
   $navigation = getNavigation();
   $navigation2 = getNavigation2();
+
   $footer = getFooter();
 
   $bikesComponents = new BikeComponents();

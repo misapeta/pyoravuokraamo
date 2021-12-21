@@ -46,7 +46,7 @@ function getEditBikeForm($bike){
             <form method="post" action="index.php"> 
             <div class="form-group"> 
             <input type="hidden" name="id" value ="'.$bike->id.'">
-            <input type="hidden" name="action" value ="updateBook">
+            <input type="hidden" name="action" value ="updateBike">
             <div class="form-group"> 
             <label for="brand_name">Merkki *</label> 
             <input type="text" class="form-control" name="brand_name" value="'.$bike->brand_name.'" /> </div>
@@ -63,7 +63,7 @@ function getEditBikeForm($bike){
             <label for="serial_number">Sarjanumero</label> 
             <input type="text" class="form-control" name="serial_number" value="'.$bike->serial_number.'" /> </div>
             
-            <button type="submit" class="btn btn-primary">Tallenna muuutos</button>
+            <button type="submit" class="btn btn-primary">Tallenna muutos</button>
             </form>
         </div>';
 

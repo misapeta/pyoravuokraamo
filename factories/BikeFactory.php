@@ -3,22 +3,22 @@
 
 class BikeFactory {
 
-     public function createBikeFromArray($array_book) {
-        $book = new Bike();
-        if (isset($array_book['id']))
-            $book->id=$array_book['id'];
-        if (isset($array_book['brand_name']))
-            $book->brand_name=$array_book['brand_name'];
-        if (isset($array_book['model']))
-            $book->model=$array_book['model'];
-        if (isset($array_book['year']))
-            $book->year=$array_book['year'];
-        if (isset($array_book['type']))
-            $book->type=$array_book['type'];
-        if (isset($array_book['serial_number']))
-            $book->serial_number=$array_book['serial_number'];
+     public function createBikeFromArray($array_bike) {
+        $bike = new Bike();
+        if (isset($array_bike['id']))
+            $bike->id=$array_bike['id'];
+        if (isset($array_bike['brand_name']))
+            $bike->brand_name=$array_bike['brand_name'];
+        if (isset($array_bike['model']))
+            $bike->model=$array_bike['model'];
+        if (isset($array_bike['year']))
+            $bike->year=$array_bike['year'];
+        if (isset($array_bike['type']))
+            $bike->type=$array_bike['type'];
+        if (isset($array_bike['serial_number']))
+            $bike->serial_number=$array_bike['serial_number'];
             
-        return $book;
+        return $bike;
     }
 
       

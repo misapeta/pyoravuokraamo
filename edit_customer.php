@@ -1,38 +1,33 @@
 <?php
 
-require_once('./dao/BikeDAO.php');
-require_once('./model/Bike.php');
-require_once('./components/BikeComponents.php');
+require_once('./dao/CustomerDAO.php');
+require_once('./model/Customer.php');
+require_once('./components/CustomerComponents.php');
 require_once ('views/header.php');
 require_once ('views/footer.php');
 require_once('utils/SanitizationService.php');
 
-//Tämä ei ole luokka, joten nämä eivät ole 
-//jäsenmuuttujia, eikä niitä siksi kutsuta myöhemmin
-//this-määreellä.
 my_error_logging_principles();
 
-
-$bikeDAO = new BikeDAO();
+$customerDAO = new CustomerDAO();
 $purifier=new SanitizationService();
-$bike=null;
+$customer=null;
 
 if (isset($_POST["id"])){
     ##echo $_POST["id"];
     $id = $_POST["id"];
-    $bike = $bikeDAO->getBikeById($id);  
+    $customer = $customerDAO->getCustomerById($id);  
 }
 else {
     //Päätetään sivun kirjoitus, kun tarvittavaa 
     //parametria ei ole annettu.
-    return("<html>Pyörän id puuttuu</html>");
+    return("<html>Asiakkaan id puuttuu</html>");
 }
 $navigation = getNavigation();
-$bikesComponents = new BikeComponents();
-$bike_form = $bikesComponents->getEditBikeForm($bike);
+$customersComponents = new CustomerComponents();
+$customer_form = $customersComponents->getEditCustomerForm($customer);
+
 ?>
-
-
 
 
 <!DOCTYPE html><html lang="en">
@@ -51,9 +46,9 @@ $bike_form = $bikesComponents->getEditBikeForm($bike);
         
  ?>
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Muokkaa pyörän tietoja</h1>
+        <h1 class="display-3">Muokkaa asiakkaan tietoja</h1>
         <?php
-        echo $bike_form
+        echo $customer_form
         
         ?>
     </div> 

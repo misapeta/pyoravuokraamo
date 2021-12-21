@@ -9,6 +9,11 @@ function connectToDatabase(){
 } 
 
 
+function connectToDatabaseCustomer(){
+  $myPDO = new PDO('sqlite:customerdatabasefile');
+  return $myPDO;
+}
+
 
 }
 

@@ -7,6 +7,7 @@
 require_once('utils/DBUtils.php');
 require_once('model/Bike.php');
 require_once ('views/header.php');
+require_once ('views/footer.php');
 require_once('factories/BikeFactory.php');
 
 my_error_logging_principles();

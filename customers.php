@@ -1,6 +1,7 @@
 <?php
 require_once ('views/header.php');
 require_once ('views/footer.php');
+require_once('./components/CustomerComponents.php');
 
 ?>
 <html>
@@ -22,11 +23,16 @@ $navigation2 = getNavigation2();
 $navigation = getNavigation();
 $footer = getFooter();
 
+
+$customerComponents = new CustomerComponents();
+$new_customer_button = $customerComponents->getNewCustomerButton(); 
+
 echo $navigation2;
 echo $navigation;
+echo $new_customer_button;
 ?>
 
- <h1 class="display-3">Pyörät</h1>
+ <h1 class="display-3">Asiakkaat</h1>
 
 <?php 
 
