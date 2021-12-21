@@ -15,7 +15,7 @@ class CustomerComponents {
 **/
 static function getCustomerForm(){
     $form_str='<div>  
-            <form method="post" action="index.php"> 
+            <form method="post" action="customers.php"> 
             <div class="form-group"> 
             <label for="first_name">Etunimi *</label> 
             <input type="text" class="form-control" name="first_name" /> </div>
@@ -32,7 +32,7 @@ static function getCustomerForm(){
             <label for="phone">Puhelin</label> 
             <input type="text" class="form-control" name="phone" /> </div>
             <div class="form-group">            
-            <button type="submit" name="action" value="addNewBike" class="btn btn-primary">Lisää tiedot</button>
+            <button type="submit" name="action" value="addNewCustomer" class="btn btn-primary">Lisää tiedot</button>
             </form>
         </div>';
 
@@ -40,12 +40,12 @@ static function getCustomerForm(){
 }
 
 function getNewCustomerButton(){
-    return '<a style="margin: 19px;" href="add_bike.php" class="btn btn-primary">
+    return '<a style="margin: 19px;" href="add_customer.php" class="btn btn-primary">
         Lisää uusi asiakas</a>';
 }
 
 function getEditCustomerButton($customerid){
-    return '<form action="edit_bike.php" method="post"> 
+    return '<form action="edit_customer.php" method="post"> 
             <input type="hidden" name="id" value="'.$customerid.'">
             <button class="btn btn-secondary" type="submit">Muokkaa</button> 
             </form>';
@@ -54,7 +54,7 @@ function getEditCustomerButton($customerid){
  function getDeleteCustomerButton($customerid){
      return '<form action="index.php" method="post">
              <input type="hidden" name="id" value="'.$customerid.'">
-             <button class="btn btn-danger" name="action" value="deleteBike" type="submit">Poista</button> 
+             <button class="btn btn-danger" name="action" value="deleteCustomer" type="submit">Poista</button> 
              </form>';
  }
  
@@ -63,7 +63,7 @@ function getCustomerComponent($customers){
     ##echo print_r($bikes);
 
     
-    $bikes_str='<table class="table table-striped">
+    $customers_str='<table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -77,27 +77,22 @@ function getCustomerComponent($customers){
             <tbody>';
             foreach($customers as $cust){  
                 ## Jokaisella pyörällä on oma painike huoltotoimenpiteen lisäämistä varten.
-                $editBikeButton = $this->getEditCustomerButton($cust->id);
-                $deleteBikeButton = $this->getDeleteCustomerButton($cust->id);
+                $editCustomerButton = $this->getEditCustomerButton($cust->id);
+                $deleteCustomerButton = $this->getDeleteCustomerButton($cust->id);
 
-                $bikes_str=$bikes_str.'<tr>
+                $customers_str=$customers_str.'<tr>
                     <td>'.$cust->id.'</td>
                     <td>'.$cust->first_name.'</td>
                     <td>'.$cust->last_name.'</td>
                     <td>'.$cust->birth_date.'</td>
                     <td>'.$cust->email.'</td>
                     <td>'.$cust->phone.'</td>
-                    
-                    <td>'.$newBikeFixButton.'</td>
-                    <td>
                     <td>'.$editCustomerButton.'</td>
-                    <td>
-                        '.$deleteCustomerButton.'
-                    </td>
+                    <td>'.$deleteCustomerButton.'</td>
                 </tr>';
             };
-                $bikes_str=$bikes_str.'</tbody></table>';
-                return $bikes_str;
+                $customers_str=$customers_str.'</tbody></table>';
+                return $customers_str;
 }
 
 

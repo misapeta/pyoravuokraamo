@@ -1,9 +1,99 @@
 <?php
+## Liitä luokka mukaan kerran, jos samaa tarvitaan useassa 
+## modulissa, kuten yleensä on asia.
+require_once('./dao/CustomerDAO.php');
+require_once('./model/Customer.php');
+require_once('./components/CustomerComponents.php');
 require_once ('views/header.php');
 require_once ('views/footer.php');
-require_once('./components/CustomerComponents.php');
+require_once('utils/SanitizationService.php');
+require_once('factories/CustomerFactory.php');
 
+my_error_logging_principles();
+
+$customerDAO = new CustomerDAO();
+$purifier=new SanitizationService();
+
+$customerFactory = new CustomerFactory();
+
+
+$status_text = "";
+$error_text = "";
+
+
+if (isset($_POST["action"])){
+    $action = $_POST["action"];
+ 
+    // rivit 39- toimii ikään kuin controllerina
+    if ($action == "addNewCustomer"){
+      try {
+          $p_customer_first_name  = $purifier->sanitizeHtml($_POST['first_name']);
+          $p_customer_last_name  = $purifier->sanitizeHtml($_POST['last_name']);
+          $p_customer_birth_date  = $purifier->sanitizeHtml($_POST['birth_date']);
+          $p_customer_email = $purifier->sanitizeHtml($_POST['email']);
+          $p_customer_phone = $purifier->sanitizeHtml($_POST['phone']);
+          $customer_ok=Customer::checkCustomer($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone );
+         if(!$customer_ok){
+           $error_text="Tarkista syötekentät";
+         }
+         else {
+           $customer = $customerFactory->createCustomer($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone );
+           $result = $customerDAO->addCustomer($customer);
+           $status_text = "Asiakkaan lisäys onnistui";
+         }
+      }
+      catch (Exception $e){
+        error_log($e->getMessage());
+        $error_text = "Asiakkaan lisäys epäonnistui";
+      }
+    }
+    else if ($action == "deleteCustomer"){
+      try {
+       //Puhdista myös hidden-parametrina saadut kentät!
+       $p_id = $purifier->sanitizeHtml($_POST['id']);
+       //Tarkista myös hidden-parametrina saadut kentät!
+       if (is_numeric($p_id)){
+         $result = $customerDAO->deleteCustomer($p_id);
+         $status_text = "Asiakas poistettiin listalta";
+       }
+      }
+      catch (Exception $e){
+        $error_text = "Poisto epäonnistui";
+      }
+    }
+    else if ($action == "updateCustomer"){
+      try {
+         $p_id = $purifier->sanitizeHtml($_POST['id']);
+         $p_customer_first_name  = $purifier->sanitizeHtml($_POST['first_name']);
+         $p_customer_last_name  = $purifier->sanitizeHtml($_POST['last_name']);
+         $p_customer_birth_date  = $purifier->sanitizeHtml($_POST['birth_date']);
+         $p_customer_email = $purifier->sanitizeHtml($_POST['email']);
+         $p_customer_phone = $purifier->sanitizeHtml($_POST['phone']);
+         $customer_ok=Customer::checkCustomer($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone );
+
+         if(!$customer_ok){
+           $error_text="Tarkista syötekentät";
+         }
+         else if (is_numeric($p_id)){
+            $customer = $customerDAO->getBikeById($p_id);
+            if ($customer==null){
+               $error_text = "Päivitettävää asiakasta ei löytynyt";
+            }
+            else {
+              $customerToUpdate = $customerFactory->createBike($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone, $p_id);
+              $result = $customerDAO->updateCustomer($customerToUpdate);
+              $status_text = "Asiakkaan tiedot päivitettiin";
+            }
+         }
+      }
+      catch (Exception $e){
+        error_log($e->getMessage());
+        $error_text = "tietojen päivitys epäonnistui";
+      }
+    }
+ }
 ?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -19,9 +109,12 @@ require_once('./components/CustomerComponents.php');
 <div class="container">
 <?php
 
-$navigation2 = getNavigation2();
-$navigation = getNavigation();
-$footer = getFooter();
+  print_status_message($status_text, "ok");
+  print_status_message($error_text, "error");
+
+  $navigation2 = getNavigation2();
+  $navigation = getNavigation();
+  $footer = getFooter();
 
 
 $customerComponents = new CustomerComponents();
@@ -36,7 +129,9 @@ echo $new_customer_button;
 
 <?php 
 
-   echo "bikeList";
+  $customers = $customerDAO->getCustomers();
+  $customerList = $customersComponents->getCustomersComponent($customers);
+  echo $customerList;
 
    echo $footer;
 
