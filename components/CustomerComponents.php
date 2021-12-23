@@ -4,11 +4,6 @@ require_once ('views/footer.php');
 
 class CustomerComponents {
 
-    // poista alta kommentit ja etene, jos lisätään muokkaustoiminto asiakkaalle
-     #function __construct() {
-     #   $this->customerFixComponents=new CustomerFixComponents();
-     #}
-
 /**
  *  Funktio palauttaa vakio-merkkijonon. Määrittelemällä se staattiseksi
   * funktio toimii nopeasti. 
@@ -38,6 +33,37 @@ static function getCustomerForm(){
 
     return $form_str;
 }
+
+function getEditCustomerForm($customer){
+    ##echo print_r($customer);
+    $form_str='<div>  
+            <form method="post" action="customers.php"> 
+            <div class="form-group"> 
+            <input type="hidden" name="id" value ="'.$customer->id.'">
+            <input type="hidden" name="action" value ="updateCustomer">
+            <div class="form-group"> 
+            <label for="first_name">Etunimi *</label> 
+            <input type="text" class="form-control" name="first_name" value="'.$customer->first_name.'" /> </div>
+            <div class="form-group"> 
+            <label for="last_name">Sukunimi *</label> 
+            <input type="text" class="form-control" name="last_name" value="'.$customer->last_name.'" /> </div>
+            <div class="form-group"> 
+            <label for="birth_date">Valmistusvuosi</label> 
+            <input type="text" class="form-control" name="birth_date" value="'.$customer->birth_date.'" /> </div>
+            <div class="form-group"> 
+            <label for="email">Sähköposti </label> 
+            <input type="text" class="form-control" name="email" value="'.$customer->email.'" /> </div>
+            <div class="form-group"> 
+            <label for="phone">Puhelin </label> 
+            <input type="text" class="form-control" name="phone" value="'.$customer->phone.'" /> </div>
+            
+            <button type="submit" class="btn btn-primary">Tallenna muutos</button>
+            </form>
+        </div>';
+
+    return $form_str;
+}
+
 
 function getNewCustomerButton(){
     return '<a style="margin: 19px;" href="add_customer.php" class="btn btn-primary">

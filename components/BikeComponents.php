@@ -89,10 +89,34 @@ function getDeleteBikeButton($bikeid){
             </form>';
 }
 
-function getBikesComponent($bikes){
-    ##echo print_r($bikes);
 
-    
+// Etusivulla näkyy ainoastaan pyörälista. Ei siis näytä buttoneita!
+function getBikelistOnlyComponent($bikes){
+    $bikes_str='<table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nimi</th>
+                    <th>Malli</th>
+                    <th>Valmistusvuosi (2000->)</th>
+                    <th>Tyyppi</th>
+                </tr>
+            </thead>
+            <tbody>';
+            foreach($bikes as $bike){  
+                $bikes_str=$bikes_str.'<tr>
+                    <td>'.$bike->brand_name.'</td>
+                    <td>'.$bike->model.'</td>
+                    <td>'.$bike->year.'</td>
+                    <td>'.$bike->type.'</td>
+                </tr>';
+            };
+                $bikes_str=$bikes_str.'</tbody></table>';
+                return $bikes_str;
+}
+
+
+function getBikesComponent($bikes){
+    ##echo print_r($bikes);    
     $bikes_str='<table class="table table-striped">
             <thead>
                 <tr>

@@ -75,12 +75,12 @@ if (isset($_POST["action"])){
            $error_text="Tarkista syötekentät";
          }
          else if (is_numeric($p_id)){
-            $customer = $customerDAO->getBikeById($p_id);
+            $customer = $customerDAO->getCustomerById($p_id);
             if ($customer==null){
                $error_text = "Päivitettävää asiakasta ei löytynyt";
             }
             else {
-              $customerToUpdate = $customerFactory->createBike($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone, $p_id);
+              $customerToUpdate = $customerFactory->createCustomer($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone, $p_id);
               $result = $customerDAO->updateCustomer($customerToUpdate);
               $status_text = "Asiakkaan tiedot päivitettiin";
             }
@@ -130,10 +130,9 @@ echo $new_customer_button;
 <?php 
 
   $customers = $customerDAO->getCustomers();
-  $customerList = $customersComponents->getCustomersComponent($customers);
+  $customerList = $customerComponents->getCustomerComponent($customers);
   echo $customerList;
-
-   echo $footer;
+  echo $footer;
 
 ?>     
 </div>

@@ -189,12 +189,12 @@ if (isset($_POST["action"])){
 			
         </div>
     </div>
- <h1 class="display-3">Pyörät</h1>
+ <h1 class="display-3">Vuokrattavat pyörät</h1>
 
 <?php 
 
    $bikes = $bikeDAO->getBikes();
-   $bikeList = $bikesComponents->getBikesComponent($bikes);
+   $bikeList = $bikesComponents->getBikelistOnlyComponent($bikes);
    echo $bikeList;
 
    echo $footer;

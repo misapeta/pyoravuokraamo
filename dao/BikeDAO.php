@@ -1,6 +1,5 @@
 <?php
 
-
 ## Liitä luokka mukaan kerran, jos samaa tarvitaan useassa 
 ## modulissa, kuten yleensä on asia.
 

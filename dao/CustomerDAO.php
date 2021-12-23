@@ -67,9 +67,9 @@ class CustomerDAO {
     }
 
     /**
-     * Varaudutaan, ettei lapsitietueita jää ennen poistoa. Muuten 
-     * asiakkaan poisto epäonnistuu lapsitietuiden vuoksi.
-    **/
+     * Varaudutaan, ettei lapsitietueita jää ennen poistoa. 
+     * asiakkaan poisto voi epäonnistua, mikäli lapsitietuita.
+     **/
     function deleteCustomer($id){
         try { 
             $sql = 'DELETE FROM CUSTOMERS  
@@ -96,7 +96,7 @@ class CustomerDAO {
             $customer_rows = $sth->fetchAll();
             $customers = [];
             foreach ($customer_rows as $customer_row) {
-            //echo print_r($customer_row);
+            ##echo print_r($customer_row);
             array_push($customers, $this->customerFactory->createCustomerFromArray($customer_row));
             }
             return $customers;
@@ -152,8 +152,8 @@ class CustomerDAO {
             //älä liitä mukaan varsinaista virhe tekstiä $exception->getMessage()
             //koska se voi sisältää liikaa tietoa tietokannan rakenteesta 
             //joka ei kuulu loppukäyttäjälle. POISTA SIIS ENNEN TOSIKÄYTTÖÄ
-        error_log($exception->getMessage());
-        throw (new Exception('Creating database failed. '.$exception->getMessage()));
+            error_log($exception->getMessage());
+            throw (new Exception('Creating database failed. '.$exception->getMessage()));
         }
     }
 }
