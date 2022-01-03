@@ -1,6 +1,6 @@
 # pyoravuokraamo
 
-Note: This project is based on "Web-technologies" Fitech-course @University of Vaasa. Special thanks to Lecturer Maarit Välisuo for teaching and for the base code, I've made changes to my needs for this practise.
+Note: This project is based on "Web-technologies" Fitech-course @University of Vaasa. Special thanks to Lecturer Maarit Välisuo for teaching and for the base code, I've made changes to my needs for this practice.
 
 ## Project "Pyörävuokraamo"'s idea
 
