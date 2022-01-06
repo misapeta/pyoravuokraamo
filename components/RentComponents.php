@@ -9,14 +9,14 @@ class RentComponents {
                 <form method="post" action="rentings.php"> 
                 <div class="form-group"> 
                 <input type="hidden" name="customerid" value="'.$customerid.'">
-                <label for="name">Sovittu vuokrahinta:</label> 
+                <label for="price">Sovittu vuokrahinta:</label> 
                 <input type="text" class="form-control" name="price" /> </div>
                 <div class="form-group"> 
                 <label for="rentdate">Vuokrauksen alkaminen:</label> 
                 <input type="date" class="form-control" min="2022-01-01" max="2050-31-11" name="rentdate" required="required" />
                 <label for="returndate">Vuokrauksen päättyminen:</label> 
                 <input type="date" class="form-control" min="2022-01-01" max="2050-31-11" name="returndate" required="required" />
-                <button type="submit" class="btn btn-primary" name="action" value ="addNewRent">Lisää vuokraus</button>
+                <button type="submit" class="btn btn-primary" name="action" value="addNewRent">Lisää vuokraus</button>
                 </form>
             </div>';
         return $form_str;
@@ -42,7 +42,7 @@ class RentComponents {
             </div>';
     }
 
-    ## Tulostetaan sivulle asiakkaan aiemmat vuokraukset
+    ## Tulostetaan sivulle asiakkaan tekemät vuokraukset
     function getRentComponent($rents){
         ##echo print_r($rents);
         $rents_str='<table class="table table-striped">

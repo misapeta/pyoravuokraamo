@@ -13,11 +13,11 @@ function getBikeFixForm($bikeid){
             <form method="post" action="bikefixes.php"> 
             <div class="form-group"> 
             <input type="hidden" name="bikeid" value="'.$bikeid.'">
-            <label for="name">Kuvaus:</label> 
+            <label for="description">Kuvaus:</label> 
             <input type="text" class="form-control" name="description" /> </div>
             <div class="form-group"> 
-            <label for="fixdate">Huoltopvm (vvvv-kk-pp):</label> 
-            <input type="text" class="form-control" name="fixdate" /> </div>
+            <label for="fixdate">Huoltopvm:</label> 
+            <input type="date" class="form-control" name="fixdate" /> </div>
             <button type="submit" class="btn btn-primary" name="action" value ="addNewBikeFix">Lisää huoltotoimenpide</button>
             </form>
         </div>';
@@ -46,7 +46,7 @@ function getBikeFixesButton($bikeid){
 
 ## Tulostetaan sivulle pyörälle tehdyt huoltotoimenpiteet
 function getBikeFixesComponent($bikeFixes){
-    ##echo print_r($bikes);
+    ##echo print_r($bikeFixes);
     $bike_fixes_str='<table class="table table-striped">
             <thead>
                 <tr>

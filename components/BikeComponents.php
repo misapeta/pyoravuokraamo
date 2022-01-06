@@ -44,30 +44,29 @@ static function getBikeForm(){
 function getEditBikeForm($bike){
     ##echo print_r($bike);
     $form_str='<div>  
-            <form method="post" action="bikes.php"> 
-            <div class="form-group"> 
-            <input type="hidden" name="id" value ="'.$bike->id.'">
-            <input type="hidden" name="action" value ="updateBike">
-            <div class="form-group"> 
-            <label for="brand_name">Merkki *</label> 
-            <input type="text" class="form-control" name="brand_name" value="'.$bike->brand_name.'" /> </div>
-            <div class="form-group"> 
-            <label for="model">Malli *</label> 
-            <input type="text" class="form-control" name="model" value="'.$bike->model.'" /> </div>
-            <div class="form-group"> 
-            <label for="year">Valmistusvuosi</label> 
-            <input type="text" class="form-control" name="year" value="'.$bike->year.'" /> </div>
-            <div class="form-group"> 
-            <label for="type">Pyörän tyyppi</label> 
-            <input type="text" class="form-control" name="type" value="'.$bike->type.'" /> </div>
-            <div class="form-group"> 
-            <label for="serial_number">Sarjanumero</label> 
-            <input type="text" class="form-control" name="serial_number" value="'.$bike->serial_number.'" /> </div>
-            
-            <button type="submit" class="btn btn-primary">Tallenna muutos</button>
-            </form>
-        </div>';
-
+        <form method="post" action="bikes.php"> 
+        <div class="form-group"> 
+        <input type="hidden" name="id" value ="'.$bike->id.'">
+        <input type="hidden" name="action" value ="updateBike">
+        <div class="form-group"> 
+        <label for="brand_name">Merkki *</label> 
+        <input type="text" class="form-control" name="brand_name" value="'.$bike->brand_name.'" /> </div>
+        <div class="form-group"> 
+        <label for="model">Malli *</label> 
+        <input type="text" class="form-control" name="model" value="'.$bike->model.'" /> </div>
+        <div class="form-group"> 
+        <label for="year">Valmistusvuosi</label> 
+        <input type="text" class="form-control" name="year" value="'.$bike->year.'" /> </div>
+        <div class="form-group"> 
+        <label for="type">Pyörän tyyppi</label> 
+        <input type="text" class="form-control" name="type" value="'.$bike->type.'" /> </div>
+        <div class="form-group"> 
+        <label for="serial_number">Sarjanumero</label> 
+        <input type="text" class="form-control" name="serial_number" value="'.$bike->serial_number.'" /> </div>
+        
+        <button type="submit" class="btn btn-primary">Tallenna muutos</button>
+        </form>
+    </div>';
     return $form_str;
 }
 

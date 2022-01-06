@@ -8,12 +8,12 @@ class RentFactory {
             if (isset($array_rent['id']))
                 $rent->id=$array_rent['id'];
             if (isset($array_rent['price']))    
-                $rent->description=$array_rent['price'];
+                $rent->price=$array_rent['price'];
             if (isset($array_rent['rentdate'])){
-                $rent->customerid=$array_rent['rentdate'];
+                $rent->rentdate=$array_rent['rentdate'];
             }
             if (isset($array_rent['returndate'])){
-                $rent->customerid=$array_rent['returndate'];
+                $rent->returndate=$array_rent['returndate'];
             }
             ## Vuokraukseen sisältyy viite asiakkaaseen,
             ## jolle toimenpide lisätään.
