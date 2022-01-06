@@ -1,7 +1,4 @@
 <?php
-
-//phpinfo();
-
 ## Liitä luokka mukaan kerran, jos samaa tarvitaan useassa 
 ## modulissa, kuten yleensä on asia.
 require_once('./dao/BikeDAO.php');
@@ -18,10 +15,8 @@ my_error_logging_principles();
 
 $bikeDAO = new BikeDAO();
 $bikeFixDAO = new BikeFixDAO();
-$purifier=new SanitizationService();
-
 $bikeFactory = new BikeFactory();
-
+$purifier=new SanitizationService();
 
 $status_text = "";
 $error_text = "";
@@ -29,7 +24,7 @@ $error_text = "";
 if (isset($_POST["action"])){
    $action = $_POST["action"];
 
-   // rivit 39- toimii ikään kuin controllerina
+   // rivit alla toimivat ikään kuin controllerina
    if ($action == "addNewBike"){
      try {
          $p_bike_brand_name = $purifier->sanitizeHtml($_POST['brand_name']);
@@ -117,14 +112,12 @@ if (isset($_POST["action"])){
   print_status_message($status_text, "ok");
   print_status_message($error_text, "error");
 
-  $navigation = getNavigation();
   $navigation2 = getNavigation2();
   $footer = getFooter();
 
   $bikesComponents = new BikeComponents();
   $new_bike_button = $bikesComponents->getNewBikeButton(); 
   echo $navigation2;
-  echo $navigation;
   echo $new_bike_button;
 ?>
  <h1 class="display-3">Pyörät</h1>
@@ -134,9 +127,9 @@ if (isset($_POST["action"])){
    $bikes = $bikeDAO->getBikes();
    $bikeList = $bikesComponents->getBikesComponent($bikes);
    echo $bikeList;
-
    echo $footer;
-?>     
+?>
+
 </div>
 </body>
 </html>

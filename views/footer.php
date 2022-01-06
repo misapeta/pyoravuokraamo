@@ -1,6 +1,5 @@
 <?php
 
-
 function getFooter(){
     return '<div class="card-footer text-muted" style="width: 100%; margin-bottom: 1em;">
     <b>Pyörävuokraamo Tmi</b>

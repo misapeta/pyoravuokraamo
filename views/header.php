@@ -33,24 +33,26 @@ function my_error_logging_principles(){
             <li class="nav-item">
             <a class="nav-link active" href="./index.php">Koti</a>
             </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pyörät</a>
-            <div class="dropdown-menu">
-            <a class="dropdown-item" href="./bikes.php">Maastopyörät</a>
-            <a class="dropdown-item" href="./bikes.php">Maantiepyörät</a>
-            <a class="dropdown-item" href="./bikes.php">Lasten pyörät</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="./bikes.php">Muut pyörät</a>
-            </div>
-            </li>
             <li class="nav-item">
             <a class="nav-link" href="./rentings.php">Vuokraa</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Ota yhteyttä</a>
+            <a class="nav-link" href="./bikes.php">Pyörät</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link disabled" href="#">Henkilökunta</a>
+            <a class="nav-link" href="./add_customer.php">Rekisteröidy asiakkaaksi</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Henkilökunta</a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="./customers.php">Asiakkaat</a>
+            <a class="dropdown-item" href="./bikes.php">Pyörät</a>
+            <a class="dropdown-item" href="./rentings.php">Vuokraukset</a>
+            <div class="dropdown-divider"></div>
+            </div>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link disabled" href="#">Ota yhteyttä</a>
             </li>
             </ul>
         </div>';
@@ -58,15 +60,14 @@ function my_error_logging_principles(){
 
     /**
       * Geneerinen virheviesti Bootstrap-tyyleillä muokattuna. 
-       *Tiedosto otetaan mukaan sivuskripteihin include-lauseella
+      * Tiedosto otetaan mukaan sivuskripteihin include-lauseella
       * siksi käytetään snake-case nimeämistä. Sama sopisi yllä 
-       *olevaan getNavigation-funktioon.
+      * olevaan getNavigation-funktioon.
       * Huomaa, että tämä funktio ei palauta mitään, vaan tulostaa 
-       *suoraan HTML:ää. Sitä pitää siis kutsua siinä kohdassa, 
+      * suoraan HTML:ää. Sitä pitää siis kutsua siinä kohdassa, 
       * jossa tulostus halutaan. Myös getNavigation-funktion voisi 
-       *toteuttaa samoin.
+      * toteuttaa samoin.
     **/
-
  function print_status_message($status_text, $type="primary"){
      //Jos teksti on tyhjä, älä tulosta mitään.
      if ($status_text==null || $status_text==""){

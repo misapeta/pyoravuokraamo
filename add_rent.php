@@ -1,27 +1,27 @@
 <?php
 
-require_once('./components/BikeFixComponents.php');
+require_once('./components/RentComponents.php');
 require_once ('views/header.php');
 require_once('utils/SanitizationService.php');
 
 my_error_logging_principles();
 
-  $navigation = getNavigation();
-  $bikeFixComponents = new BikeFixComponents();
-  $purifier=new SanitizationService();
+$navigation = getNavigation();
+$rentComponents = new RentComponents();
+$purifier=new SanitizationService();
 
- ## Uutta korjausta ei voida kirjata, jos ei tiedetä, mille 
- ## pyörälle se tulee. Tieto tulee bikeid-kätketyssä kentässä.
- if (isset($_POST["bikeid"]))
+ ## Uutta vuokrausta ei voida kirjata, jos ei tiedetä, kenelle 
+ ## Tieto tulee customerid-kätketyssä kentässä.
+ if (isset($_POST["customerid"]))
 {
-  $bikeid=$_POST["bikeid"];
-  $bike_fix_form = $bikeFixComponents->getBikeFixForm($bikeid); 
+  $customerid=$_POST["customerid"];
+  $rent_form = $rentComponents->getRentForm($customerid); 
 }
 else {
     ## Virhe. Puutteelliset parametrit! Lopetetaan 
     ## tähän.
-    return "<html>Korjauslomaketta ei voi näyttää, 
-    koska pyörän id-kenttää ei ole välitetty 
+    return "<html>Vuokralomaketta ei voi näyttää, 
+    koska asiakkaan id-kenttää ei ole välitetty 
     lomakkeelle.</html>";
 }
 ?>
@@ -36,21 +36,20 @@ else {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 <title>BikeRental</title>
 </head>
-<body>  
+<body>
 <div>
-  <?php        
-    echo $navigation;        
+  <?php
+    echo $navigation;      
   ?>
 </div>
-<div class="container">    
-  <div class="row">
+<div class="container"> 
+<div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Lisää pyörälle korjaustoimenpide</h1>
-        <?php
-          echo $bike_fix_form;
+        <h1 class="display-3">Lisää vuokraustiedot</h1>
+        <?php        
+            echo $rent_form;
         ?>
-    </div>
-  </div>  
+    </div> 
 </div>  
 </body>
 </html>

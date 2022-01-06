@@ -1,5 +1,6 @@
 <?php
-
+require_once ('views/header.php');
+require_once ('views/footer.php');
 require('./components/BikeFixComponents.php');
 
 class BikeComponents {
@@ -88,7 +89,6 @@ function getDeleteBikeButton($bikeid){
             <button class="btn btn-danger" name="action" value="deleteBike" type="submit">Poista</button> 
             </form>';
 }
-
 
 // Etusivulla näkyy ainoastaan pyörälista. Ei siis näytä buttoneita!
 function getBikelistOnlyComponent($bikes){

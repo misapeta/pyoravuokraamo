@@ -3,7 +3,6 @@
 ## modulissa, kuten yleensä on asia.
 require_once('./dao/CustomerDAO.php');
 require_once('./model/Customer.php');
-require_once('./dao/RentDAO.php');
 require_once('./components/CustomerComponents.php');
 require_once ('views/header.php');
 require_once ('views/footer.php');
@@ -13,9 +12,8 @@ require_once('factories/CustomerFactory.php');
 my_error_logging_principles();
 
 $customerDAO = new CustomerDAO();
-$rentDAO = new RentDAO();
-$customerFactory = new CustomerFactory();
 $purifier=new SanitizationService();
+$customerFactory = new CustomerFactory();
 
 $status_text = "";
 $error_text = "";
@@ -23,7 +21,7 @@ $error_text = "";
 if (isset($_POST["action"])){
     $action = $_POST["action"];
  
-    // rivit alla toimivat ikään kuin controllerina
+    // rivit 39- toimii ikään kuin controllerina
     if ($action == "addNewCustomer"){
       try {
           $p_customer_first_name  = $purifier->sanitizeHtml($_POST['first_name']);
@@ -33,12 +31,12 @@ if (isset($_POST["action"])){
           $p_customer_phone = $purifier->sanitizeHtml($_POST['phone']);
           $customer_ok=Customer::checkCustomer($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone );
          if(!$customer_ok){
-           $error_text="Tarkista syötekentät. Yritä uudelleen klikkaamalla yläpalkista kohtaa 'Rekisteröidy asiakkaaksi'";
+           $error_text="Tarkista syötekentät";
          }
          else {
            $customer = $customerFactory->createCustomer($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone );
            $result = $customerDAO->addCustomer($customer);
-           $status_text = "Asiakkaan lisäys onnistui";
+           $status_text = "Asiakkaan ".$p_customer_first_name." ".$p_customer_last_name." lisäys onnistui";
          }
       }
       catch (Exception $e){
@@ -71,7 +69,7 @@ if (isset($_POST["action"])){
          $customer_ok=Customer::checkCustomer($p_customer_first_name , $p_customer_last_name , $p_customer_birth_date , $p_customer_email , $p_customer_phone );
 
          if(!$customer_ok){
-           $error_text="Tarkista syötekentät";
+           $error_text="Tarkasta syötekentät. Yritä uudelleen klikkaamalla yläpalkista kohtaa 'Rekisteröidy asiakkaaksi'";
          }
          else if (is_numeric($p_id)){
             $customer = $customerDAO->getCustomerById($p_id);
@@ -91,8 +89,8 @@ if (isset($_POST["action"])){
       }
     }
  }
-
 ?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -107,27 +105,25 @@ if (isset($_POST["action"])){
 <body>
 <div class="container">
   <?php
-    print_status_message($status_text, "ok");
-    print_status_message($error_text, "error");
+
 
     $navigation2 = getNavigation2();
     $footer = getFooter();
-
     $customerComponents = new CustomerComponents();
     $new_customer_button = $customerComponents->getNewCustomerButton(); 
-    echo $navigation2;
-    echo $new_customer_button;
-  ?>
 
-  <h1 class="display-3">Asiakkaat</h1>
+    echo $navigation2;
+  ?>
 
   <?php 
-    $customers = $customerDAO->getCustomers();
-    $customerList = $customerComponents->getCustomerComponent($customers);
-    echo $customerList;
+    print_status_message($status_text, "ok");
+    print_status_message($error_text, "error");
+    #$customers = $customerDAO->getCustomers();
+    #$customerList = $customerComponents->getCustomerComponent($customers);
+    #echo $customerList;
+    echo "<a href='index.php'>Palaa etusivulle</a>";
     echo $footer;
   ?>
-
 </div>
 </body>
 </html>

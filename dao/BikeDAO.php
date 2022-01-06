@@ -88,7 +88,7 @@ class BikeDAO {
      **/
     function getBikes(){
         try {
-            $sql = 'SELECT * FROM BIKES';  
+            $sql = 'SELECT * FROM BIKES';
             $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
             $sth->execute();
             $bike_rows = $sth->fetchAll();

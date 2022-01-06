@@ -1,6 +1,4 @@
 <?php
-
-
 require_once('./dao/BikeFixDAO.php');
 require_once('./dao/BikeDAO.php');
 require_once('./model/BikeFix.php');
@@ -13,7 +11,6 @@ require_once ('views/footer.php');
 
 my_error_logging_principles();
 
-
 $bikeFixDAO = new BikeFixDAO();
 $bikeDAO = new BikeDAO();
 $bikeFixFactory = new BikeFixFactory();
@@ -23,8 +20,6 @@ $purifier=new SanitizationService();
 ## Tarkista isset-funktiolla, että kyseinen parametri on 
 ## asetettu. bikeid pitää olla aina asetettu, jotta voidaan 
 ## hakea oikean pyörän huollot.
-
-
 if (isset($_POST["bikeid"])){
   $bikeid = $purifier->sanitizeHtml($_POST["bikeid"]);
   ## Olemme saaneet tiedon, mihin pyörään nämä huollot liittyvät.
@@ -98,8 +93,6 @@ if (isset($_POST["action"])){
     }
 }
 
-
-
 ?>
 <html>
 <head>
@@ -131,7 +124,7 @@ if (isset($_POST["action"])){
    echo $bikeFixList;
    echo $footer;
 ?>     
-</div>
 
+</div>
 </body>
 </html>

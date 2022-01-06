@@ -23,34 +23,36 @@ else {
     //parametria ei ole annettu.
     return("<html>Asiakkaan id puuttuu</html>");
 }
-$navigation = getNavigation();
+$navigation2 = getNavigation2();
+$footer = getFooter();
+
 $customersComponents = new CustomerComponents();
 $customer_form = $customersComponents->getEditCustomerForm($customer);
 
 ?>
 
 
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>  
-<meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>BikeRental</title>  
+    <meta charset="UTF-8">
+    <title>BikeRental</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+</head>
 <body>  
 <div class="container">    
- <?php
-        
-        echo $navigation
-        
- ?>
+    <?php
+        echo $navigation2;   
+    ?>
     <div class="col-sm-8 offset-sm-2">
         <h1 class="display-3">Muokkaa asiakkaan tietoja</h1>
         <?php
-        echo $customer_form
-        
+            echo $customer_form;
+            echo $footer;
         ?>
     </div> 
 </div>  
-</body></html>
+</body>
+</html>

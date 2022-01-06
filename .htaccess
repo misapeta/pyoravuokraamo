@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "Pyörien hallinta"
+AuthBasicProvider file
+AuthUserFile "C:\webteknologiat\salasanat.txt"
+Require valid-user
