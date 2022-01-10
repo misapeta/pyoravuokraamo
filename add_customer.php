@@ -17,8 +17,7 @@ $customer_form = CustomerComponents::getCustomerForm();
 
 <!DOCTYPE html>
 <html lang="en">
-<?php
-    
+<?php    
     echo $head;
 ?>
 <body>  

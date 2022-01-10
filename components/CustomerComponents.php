@@ -54,7 +54,7 @@ static function getCustomerForm(){
             <label for="last_name">Sukunimi *</label> 
             <input type="text" class="form-control" name="last_name" value="'.$customer->last_name.'" /> </div>
             <div class="form-group"> 
-            <label for="birth_date">Valmistusvuosi</label> 
+            <label for="birth_date">Syntymäaika</label> 
             <input type="text" class="form-control" name="birth_date" value="'.$customer->birth_date.'" /> </div>
             <div class="form-group"> 
             <label for="email">Sähköposti </label> 

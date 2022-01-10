@@ -46,7 +46,6 @@ echo $navigation2;
     $bikes = $bikeDAO->getBikes();
     $bikeList = $bikesComponents->getBikelistOnlyComponent($bikes);
     echo $bikeList;
- 
     echo $footer;
   ?>
 </div>
