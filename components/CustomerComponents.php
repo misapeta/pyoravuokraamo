@@ -106,6 +106,7 @@ static function getCustomerForm(){
             <tbody>';
     foreach($customers as $cust){  
         ## Jokaisella asiakkaalla on painike vuokrauksen lisäämistä varten.
+        $getRentalHistoryButton = $this->rentComponents->getRentalHistoryButton($cust->id);
         $newRentButton = $this->rentComponents->getNewRentButton($cust->id);
         $editCustomerButton = $this->getEditCustomerButton($cust->id);
         $deleteCustomerButton = $this->getDeleteCustomerButton($cust->id);
@@ -117,6 +118,7 @@ static function getCustomerForm(){
             <td>'.$cust->birth_date.'</td>
             <td>'.$cust->email.'</td>
             <td>'.$cust->phone.'</td>
+            <td>'.$getRentalHistoryButton.'</td>
             <td>'.$newRentButton.'</td>
             <td>'.$editCustomerButton.'</td>
             <td>'.$deleteCustomerButton.'</td>

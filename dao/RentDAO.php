@@ -107,6 +107,28 @@ class RentDAO {
         }
     }
 
+    /**
+     * Return list of Rent-objects. List does select all rents.
+    **/
+    function getAllRents(){
+        try {
+            $sql = 'SELECT * FROM RENT';  
+            $sth = $this->dbconnection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+            ##$sth->execute(array(':customerid' => $customerid));
+            $rent_rows = $sth->fetchAll();
+            $rents = [];
+            foreach ($rent_rows as $rent_row) {
+            //echo print_r($rent_row);
+            array_push($rents, $this->rentFactory->createRentFromArray($rent_row));
+            }
+            return $rents;
+        }
+        catch (PDOException $exception) {
+            error_log($exception->getMessage());
+            throw (new Exception("Error when getting rents!"));
+        }
+    }
+
 
     function getRentById($id){
         try { 

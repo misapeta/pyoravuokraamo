@@ -1,29 +1,28 @@
 <?php
 
+require_once('./dao/RentDAO.php');
+require_once('./dao/CustomerDAO.php');
+require_once('./model/Renting.php');
 require_once('./components/RentComponents.php');
-require_once ('views/header.php');
 require_once('utils/SanitizationService.php');
+require_once('factories/RentFactory.php');
+require_once('factories/CustomerFactory.php');
+require_once ('views/header.php');
+require_once ('views/head.php');
+require_once ('views/footer.php');
 
 my_error_logging_principles();
 
-$navigation2 = getNavigation2();
+$rentDAO = new RentDAO();
+$customerDAO = new CustomerDAO();
+$rentFactory = new RentFactory();
 $rentComponents = new RentComponents();
+$customerFactory = new CustomerFactory();
 $purifier=new SanitizationService();
+$head = getHead();
+$navigation2 = getNavigation2();
+$footer = getFooter();
 
- ## Uutta vuokrausta ei voida kirjata, jos ei tiedetä, kenelle 
- ## Tieto tulee customerid-kätketyssä kentässä.
- if (isset($_POST["customerid"]))
-{
-  $customerid=$_POST["customerid"];
-  $rent_form = $rentComponents->getRentForm($customerid); 
-}
-else {
-    ## Virhe. Puutteelliset parametrit! Lopetetaan 
-    ## tähän.
-    return "<html>Vuokralomaketta ei voi näyttää, 
-    koska asiakkaan id-kenttää ei ole välitetty 
-    lomakkeelle.</html>";
-}
 ?>
 
 <!DOCTYPE html>
@@ -39,16 +38,16 @@ else {
 <body>
 <div>
   <?php
-    echo $navigation2;      
+    echo $navigation2;
+    
   ?>
 </div>
+
 <div class="container"> 
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Lisää vuokraustiedot</h1>
-        <?php        
-            echo $rent_form;
-        ?>
+        <h1 class="display-5" style="color: red; margin: 1em;">Hae ensin asiakas, jonka vuokraushistoriaa haluat tarkastella</h1>
+        <p>Valitse ensin asiakas, jonka vuokraushistoriaa haluat tarkastella! <a href="./customers.php">Siirry asiakkaan valintaan</a></p>
     </div> 
 </div>  
 </body>

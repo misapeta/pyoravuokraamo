@@ -10,7 +10,7 @@ function getFooter(){
         <li><a href="#">Käyttötuki</a></li>
         <li><a href="#">Palveluehdot</a></li>
     </ul>
-    Last update: 14-12-2021
+    Last update: 10-1-2022
 </div>';
 
 }

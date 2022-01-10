@@ -28,16 +28,13 @@ function my_error_logging_principles(){
  }
 
  function getNavigation2(){
-    return '<div>
+    return '<div style="margin: 0.5em;">
             <ul class="nav nav-pills" style="padding: 0.2em; justify-content: center; border:solid; border-width: thin;">
             <li class="nav-item">
             <a class="nav-link active" href="./index.php">Koti</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="./rentings.php">Vuokraa</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="./bikes.php">Pyörät</a>
+            <a class="nav-link" href="./price_list.php">Vuokrapyörät</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="./add_customer.php">Rekisteröidy asiakkaaksi</a>
@@ -47,7 +44,7 @@ function my_error_logging_principles(){
             <div class="dropdown-menu">
             <a class="dropdown-item" href="./customers.php">Asiakkaat</a>
             <a class="dropdown-item" href="./bikes.php">Pyörät</a>
-            <a class="dropdown-item" href="./rentings.php">Vuokraukset</a>
+            <a class="dropdown-item" href="./hae_asiakas_ensin.php">Vuokraukset</a>
             <div class="dropdown-divider"></div>
             </div>
             </li>

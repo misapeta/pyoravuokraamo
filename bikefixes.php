@@ -107,11 +107,11 @@ if (isset($_POST["action"])){
 <?php
   print_status_message($status_text, "ok");
   print_status_message($error_text, "error");
-  $navigation = getNavigation();
+  $navigation2 = getNavigation2();
   $footer = getFooter();
   $bikeFixComponents = new BikeFixComponents();
   $new_bike_fix_button = $bikeFixComponents->getNewBikeFixButton($bikeid); 
-  echo $navigation;
+  echo $navigation2;
   echo $new_bike_fix_button;
 ?>
 

@@ -37,7 +37,7 @@ class RentComponents {
         return '<form method="post" action="rentings.php"> 
                 <input type="hidden" name="customerid" value="'.$customerid.'">
                 <div class="form-group"> 
-                <button type="submit" class="btn btn-primary">Näytä vuokraushistoria</button>
+                <button type="submit" class="btn btn-info">Näytä vuokraushistoria</button>
                 </form>
             </div>';
     }
