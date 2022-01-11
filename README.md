@@ -9,3 +9,6 @@ This is a web-app, where you can have a database (SQLite, unfortunately)  for bi
 New people can join that app by filling a form, clicking "Asiakkaat"-button. Information of customers is available only for authorized bikerental personnel.
 
 Note 2: This is a practice, do not use this in a real production case!
+
+
+Videointroduction about 'pyoravuokraamo' in Finnish: https://youtu.be/N1uWnm14LCo
