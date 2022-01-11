@@ -1,6 +1,5 @@
 <?php
 
-
 ## Liitä luokka mukaan kerran, jos samaa tarvitaan useassa 
 ## modulissa, kuten yleensä on asia.
 require_once('./dao/BikeDAO.php');
@@ -15,18 +14,14 @@ require_once ('views/footer.php');
 require_once('utils/SanitizationService.php');
 require_once('factories/BikeFactory.php');
 
-
 my_error_logging_principles();
-
 
 $bikeDAO = new BikeDAO();
 $customerDAO = new CustomerDAO();
 $bikeFixDAO = new BikeFixDAO();
 $rentDAO = new RentDAO();
 $purifier=new SanitizationService();
-
 $bikeFactory = new BikeFactory();
-
 
 ## Kun sivua kutsutaan ensimmäisen kerran, luodaan tarvittavat 
 ## taulut. Näitä ei saa olla mukana tuotantokoodissa, vaan tietokanta
