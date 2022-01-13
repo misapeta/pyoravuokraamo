@@ -51,6 +51,9 @@ function my_error_logging_principles(){
             <li class="nav-item">
             <a class="nav-link disabled" href="#">Ota yhteyttä</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link" href="./info.php">Info</a>
+            </li>
             </ul>
         </div>';
 }
